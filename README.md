@@ -20,6 +20,6 @@ Contact me on [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 ## License
 
 This project is licensed under the terms of the **GNU GENERAL PUBLIC** license.
->You can check out the full license [here](https://github.com/jcarva/lexical_analyser/blob/master/LICENSE)
+>You can check out the full license [here](https://github.com/jcarva/rasterization/blob/master/LICENSE)
 
 ---
