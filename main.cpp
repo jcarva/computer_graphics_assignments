@@ -6,15 +6,9 @@ void MyGlDraw(void)
 	//*************************************************************************
 	// Chame aqui as funções do mygl.h
 	//*************************************************************************
-	int foo [4] = { 0, 120, 120, 255 };
-	Pixel j = Pixel();
 
-	for (int i = 0; i < 512; i++)
-	{
-		int foo [4] = { 0+i/2, 0, 255-i/2, 255 };
-		j.PutPixel(i,i,foo);
-		j.PutPixel(i,512-i,foo);
-	}
+	Line().DrawLine(Pixel(100,100),Pixel(411,411));
+	Line().DrawLine(Pixel(100,300),Pixel(411,411));
 	
 }
 

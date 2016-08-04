@@ -8,7 +8,7 @@ class Pixel
 public:
 	int column;
 	int row;
-	int offset; //absolute position each pixel
+	int offset; //absolute position each pixel when it will be renderized. 
 
 	Pixel(int x, int y);
 	~Pixel();

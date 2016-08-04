@@ -1,7 +1,6 @@
 #ifndef _LINE_H_
 #define _LINE_H_
 
-#include "definitions.h"
 #include "pixel.h"
 
 class Line
@@ -24,8 +23,34 @@ Line::~Line()
 
 void Line::DrawLine(Pixel initial, Pixel final)
 {
-	
+	int red [4] = { 255, 0, 0, 255 };
+	Pixel reference_pixel = Pixel(0,0);
+
+	int deltaX = final.column - initial.column;
+	int deltaY = final.row - initial.row;
+	int d = (2 * deltaY) - deltaX;
+	int increase_e = 2 * deltaY;
+	int increase_ne = 2 * (deltaY - deltaX);
+	int x = initial.column;
+	int y = initial.row;
+
+	reference_pixel.PutPixel(x,y,red);
+
+	while(x < final.column) {
+		if (d <= 0)
+		{
+			d += increase_e;
+			x++;
+		}
+		else
+		{
+			d += increase_ne;
+			x++;
+			y++;
+		}
+		reference_pixel.PutPixel(x,y,red);
+	}
+
 }
 
 #endif // _LINE_H_
-
