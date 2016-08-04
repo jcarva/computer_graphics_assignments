@@ -8,7 +8,7 @@ class Line
 public:
 	Line();
 	~Line();
-	void DrawLine(Pixel initial, Pixel final);
+	void DrawLine(Pixel initial, Pixel final, int color[4]);
 };
 
 Line::Line()
@@ -21,9 +21,8 @@ Line::~Line()
 	//std::cout << "Line is being deleted" << std::endl;
 }
 
-void Line::DrawLine(Pixel initial, Pixel final)
-{
-	int red [4] = { 255, 0, 0, 255 };
+void Line::DrawLine(Pixel initial, Pixel final, int color[4])
+{	
 	Pixel reference_pixel = Pixel(0,0);
 
 	int deltaX = final.column - initial.column;
@@ -34,7 +33,7 @@ void Line::DrawLine(Pixel initial, Pixel final)
 	int x = initial.column;
 	int y = initial.row;
 
-	reference_pixel.PutPixel(x,y,red);
+	reference_pixel.PutPixel(x,y,color);
 
 	while(x < final.column) {
 		if (d <= 0)
@@ -48,7 +47,7 @@ void Line::DrawLine(Pixel initial, Pixel final)
 			x++;
 			y++;
 		}
-		reference_pixel.PutPixel(x,y,red);
+		reference_pixel.PutPixel(x,y,color);
 	}
 
 }
