@@ -5,6 +5,7 @@
 #include <string>
 #include "pixel.h"
 #include <vector>
+#include <math.h>
 
 class Line
 {
@@ -150,9 +151,48 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 
 	}
 
+
+	/*
+		Calculate the incremental color. The difference between the final and initail colors are
+		divided over the line.
+	*/
+	double incremental_color[4] = {
+		(double) (final_color[0] - initial_color[0])/(buffer_line.size()),
+		(double) (final_color[1] - initial_color[1])/(buffer_line.size()),
+		(double) (final_color[2] - initial_color[2])/(buffer_line.size()),
+		(double) (final_color[3] - initial_color[3])/(buffer_line.size())
+	};
+
+	std::clog << "Incremental color: " << "R[" << incremental_color[0] << "], G[" << incremental_color[1] << "], B[" << incremental_color[2] <<"]." << std::endl;
+
+
+	/*
+		Initial set to the resulting color of color interpolation.
+	*/
+	double resulting_color[4] = {
+		(double) initial_color[0],
+		(double) initial_color[1],
+		(double) initial_color[2],
+		(double) initial_color[3]
+	};
+
+	std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
+
+
+	/*
+		Put pixels and increment color to color interpolation.
+	*/
 	for (int i = 0 ; i < buffer_line.size() ; ++i)
 	{
-		reference_pixel.PutPixel(buffer_line[i].column,buffer_line[i].row, initial_color);
+		reference_pixel.PutPixel(buffer_line[i].column,buffer_line[i].row, resulting_color);
+
+		resulting_color[0] += incremental_color[0];
+		resulting_color[1] += incremental_color[1];
+		resulting_color[2] += incremental_color[2];
+		resulting_color[3] += incremental_color[3];
+
+		std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
+
 	}
 
 }
