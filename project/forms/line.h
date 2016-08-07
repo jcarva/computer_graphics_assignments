@@ -5,7 +5,6 @@
 #include <string>
 #include "pixel.h"
 #include <vector>
-#include <math.h>
 
 class Line
 {
@@ -148,11 +147,11 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 		/*
 			Revert transformations.
 		*/
-	    if(x_limit != final.column)
-	        reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
-	    
-	    if(y_limit != final.row)
-	        reference_pixel.row = initial.row - (reference_pixel.row - initial.row);
+		if(x_limit != final.column)
+		    reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
+
+		if(y_limit != final.row)
+		    reference_pixel.row = initial.row - (reference_pixel.row - initial.row);
 
 
 		buffer_line.push_back(reference_pixel);
