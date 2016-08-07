@@ -60,15 +60,15 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 	/*
 		Set beyond line coordenates.
 	*/
-	if (initial.column > final.column) //Set x limit
+	if (initial.column > final.column) //Set x limit using x0 transformation.
 		x_limit = (initial.column - final.column) + initial.column;
 	else
-		x_limit = final.column;
+		x_limit = final.column; //Base case
 
-	if (initial.row > final.row) //Set y limit
+	if (initial.row > final.row) //Set y limit using y0 transformation.
 		y_limit = (initial.row - final.row) + initial.row;
 	else
-		y_limit = final.row;
+		y_limit = final.row; //Base case
 
 	/*
 		Set deltaX, deltaY. According to the Bresenham Algorithm, these depend of the beyond line coordenates.
@@ -84,7 +84,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 
 
 	/*
-		Set and Change variables to use the Bresenham's Algorithm all octantes.
+		Set and Change variables to use the Bresenham's Algorithm all octantes using y=x transformation.
 	*/
 	if(deltaX < deltaY) {
 	    int tmp = deltaX;
@@ -109,12 +109,6 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 	int increase_e = 2 * deltaY;
 	int increase_ne = 2 * (deltaY - deltaX);
 
-	// std::clog << "###################" ;
-	// std::clog << std::endl << "LINE: "<< line_name << std::endl;
-	// std::clog << "dx: " << deltaX << std::endl << "dy: " << deltaY << std::endl;
-	// std::clog << "increase_e: " << increase_e << std::endl << "increase_ne: " << increase_ne << std::endl << std::endl;
-	// std::clog << "d: " << d << ", x: " << x  << ", y: " << y << std::endl;
-
 	reference_pixel.column = x;
 	reference_pixel.row = y;
 
@@ -131,16 +125,15 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 			d += increase_ne;
 			(*reference_axis) += 1;
 			(*complementary_axis) += 1;
-		}
-
-
-		//std::clog << "d: " << d << ", x: " << x  << ", y: " << y << std::endl;
-		
+		}	
 
 		reference_pixel.column = x;
 		reference_pixel.row = y;
 
 
+		/*
+			Revert transformations.
+		*/
 	    if(x_limit != final.column)
 	        reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
 	    
