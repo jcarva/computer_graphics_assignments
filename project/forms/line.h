@@ -11,7 +11,7 @@ class Line
 public:
 	Line();
 	~Line();
-	void DrawLine(std::string line_name, Pixel initial, Pixel final, int color[4]);
+	void DrawLine(std::string line_name, Pixel initial, Pixel final, int initial_color[4], int final_color[4]);
 };
 
 Line::Line()
@@ -24,14 +24,8 @@ Line::~Line()
 	//std::cout << "Line is being deleted" << std::endl;
 }
 
-void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color[4])
+void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initial_color[4], int final_color[4])
 {	
-
-	/*
-		Pixels vector backup to do octante transformations.
-	*/
-	std::vector<Pixel> buffer_line;
-
 
 	/*
 		Reference Pixel to draw the line, it will be to puted a lot of time in different coordenates.
@@ -107,7 +101,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 		limit = x_limit;
 
 		reference_axis = &x;
-	    complementary_axis = &y;
+		complementary_axis = &y;
 	}
 
 
@@ -123,7 +117,8 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 
 	reference_pixel.column = x;
 	reference_pixel.row = y;
-	buffer_line.push_back(reference_pixel);
+
+	reference_pixel.PutPixel(reference_pixel.column, reference_pixel.row, initial_color);
 
 	while(*reference_axis < limit) {
 		if (d <= 0)
@@ -153,12 +148,8 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 	        reference_pixel.row = initial.row - (reference_pixel.row - initial.row);
 
 
-		buffer_line.push_back(reference_pixel);
-	}
+		reference_pixel.PutPixel(reference_pixel.column, reference_pixel.row, initial_color);
 
-	for (int i = 0; i < buffer_line.size(); i++)
-	{
-		reference_pixel.PutPixel(buffer_line[i].column,buffer_line[i].row,color);
 	}
 
 }
