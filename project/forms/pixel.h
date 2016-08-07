@@ -52,4 +52,3 @@ void Pixel::PutPixel(int x, int y, double RGBA[4])
 }
 
 #endif // _PIXEL_H_
-

@@ -4,6 +4,7 @@
 #include "definitions.h"
 #include "./forms/pixel.h"
 #include "./forms/line.h"
+#include "./forms/triangle.h"
 
 #endif // _MYGL_H_
 

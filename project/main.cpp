@@ -14,21 +14,7 @@ void MyGlDraw(void)
 		int blue[4] = { 0, 0, 255, 255 };
 		int yellow[4] = { 255, 255, 0, 255 };
 
-		Line().DrawLine("Green-Red", Pixel(0,0),Pixel((IMAGE_WIDTH/4)*3 ,(IMAGE_HEIGHT/4)*1), green, red);
-		Line().DrawLine("Blue-Yellow", Pixel(0,0),Pixel(255, 255), blue, yellow);
-		Line().DrawLine("Red-Green", Pixel(0,0),Pixel((IMAGE_WIDTH/4)*1,(IMAGE_HEIGHT/4)*3), red, green);
-
-		Line().DrawLine("Green-Red", Pixel(511,511),Pixel((IMAGE_WIDTH/4)*3,(IMAGE_HEIGHT/4)*1), green, red);
-		Line().DrawLine("Blue-Yellow", Pixel(512,512),Pixel(256,256), blue, yellow);
-		Line().DrawLine("Red-Green", Pixel(512,512),Pixel((IMAGE_WIDTH/4)*1,(IMAGE_HEIGHT/4)*3), red, green);
-
-		Line().DrawLine("Green-Red", Pixel(512,0),Pixel((IMAGE_WIDTH/4)*1,(IMAGE_HEIGHT/4)*1), green, red);
-		Line().DrawLine("Blue-Yellow", Pixel(512,0),Pixel(256,256), blue, yellow);
-		Line().DrawLine("Red-Green", Pixel(512,0),Pixel((IMAGE_WIDTH/4)*3,(IMAGE_HEIGHT/4)*3), red, green);
-
-		Line().DrawLine("Green-Red", Pixel(0,512),Pixel((IMAGE_WIDTH/4)*1,(IMAGE_HEIGHT/4)*1), green, red);
-		Line().DrawLine("Blue-Yellow", Pixel(0,512),Pixel(256,256), blue, yellow);
-		Line().DrawLine("Red-Green", Pixel(0,512),Pixel((IMAGE_WIDTH/4)*3,(IMAGE_HEIGHT/4)*3), red, green);
+		Triangle().DrawTriangle(Pixel((IMAGE_WIDTH/4)*1,100),Pixel((IMAGE_WIDTH/4)*3,100),Pixel(256,350), green, red, blue);
 
 	flag = false;
 	}
