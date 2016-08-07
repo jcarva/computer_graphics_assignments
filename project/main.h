@@ -3,7 +3,6 @@
 #include <GL/glut.h>
 #include <iostream>
 
-#include "definitions.h"
 #include "mygl.h"
 
 GLuint tex;

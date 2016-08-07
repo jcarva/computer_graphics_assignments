@@ -2,8 +2,8 @@
 #define _MYGL_H_
 
 #include "definitions.h"
-#include "pixel.h"
-#include "line.h"
+#include "./forms/pixel.h"
+#include "./forms/line.h"
 
 #endif // _MYGL_H_
 
