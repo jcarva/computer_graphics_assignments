@@ -36,7 +36,7 @@ int Pixel::Offset(int column, int row)
 
 void Pixel::PutPixel(int x, int y, double RGBA[4])
 {
-	if ((x >= 0 && x < IMAGE_WIDTH) && (y >= 0 && y < IMAGE_HEIGHT))
+	if ((x >= 0 && x <= IMAGE_WIDTH) && (y >= 0 && y <= IMAGE_HEIGHT))
 	{
 		offset = Offset(x, y);
 

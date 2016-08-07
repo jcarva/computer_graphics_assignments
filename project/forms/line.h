@@ -163,7 +163,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 		(double) (final_color[3] - initial_color[3])/(buffer_line.size())
 	};
 
-	std::clog << "Incremental color: " << "R[" << incremental_color[0] << "], G[" << incremental_color[1] << "], B[" << incremental_color[2] <<"]." << std::endl;
+	//std::clog << "Incremental color: " << "R[" << incremental_color[0] << "], G[" << incremental_color[1] << "], B[" << incremental_color[2] <<"]." << std::endl;
 
 
 	/*
@@ -176,7 +176,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 		(double) initial_color[3]
 	};
 
-	std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
+	//std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
 
 
 	/*
@@ -191,7 +191,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 		resulting_color[2] += incremental_color[2];
 		resulting_color[3] += incremental_color[3];
 
-		std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
+		//std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
 
 	}
 
