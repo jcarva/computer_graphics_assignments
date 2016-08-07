@@ -92,23 +92,23 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 	/*
 		Set and Change variables to use the Bresenham's Algorithm all octantes.
 	*/
-    if(deltaX < deltaY) {
-        int tmp = deltaX;
-        deltaX = deltaY;
-        deltaY = tmp;
-        
-        limit = y_limit;
-        
-        reference_axis = &y;
-        complementary_axis = &x;
-    }
-    else {
+	if(deltaX < deltaY) {
+	    int tmp = deltaX;
+	    deltaX = deltaY;
+	    deltaY = tmp;
 
-    	limit = x_limit;
+	    limit = y_limit;
+
+	    reference_axis = &y;
+	    complementary_axis = &x;
+	}
+	else {
+
+		limit = x_limit;
 
 		reference_axis = &x;
 	    complementary_axis = &y;
-    }
+	}
 
 
 	int d = (2 * deltaY) - deltaX;
@@ -120,7 +120,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 	// std::clog << "dx: " << deltaX << std::endl << "dy: " << deltaY << std::endl;
 	// std::clog << "increase_e: " << increase_e << std::endl << "increase_ne: " << increase_ne << std::endl << std::endl;
 	// std::clog << "d: " << d << ", x: " << x  << ", y: " << y << std::endl;
-	
+
 	reference_pixel.column = x;
 	reference_pixel.row = y;
 	buffer_line.push_back(reference_pixel);
@@ -146,11 +146,11 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 		reference_pixel.row = y;
 
 
-        if(x_limit != final.column)
-            reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
-        
-        if(y_limit != final.row)
-            reference_pixel.row = initial.row - (reference_pixel.row - initial.row);
+	    if(x_limit != final.column)
+	        reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
+	    
+	    if(y_limit != final.row)
+	        reference_pixel.row = initial.row - (reference_pixel.row - initial.row);
 
 
 		buffer_line.push_back(reference_pixel);
