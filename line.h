@@ -87,7 +87,29 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 		Variable that represents the 'while' limit to put pixels.
 	*/
 	int limit;
-	
+
+
+	/*
+		Set and Change variables to use the Bresenham's Algorithm all octantes.
+	*/
+    if(deltaX < deltaY) {
+        int tmp = deltaX;
+        deltaX = deltaY;
+        deltaY = tmp;
+        
+        limit = y_limit;
+        
+        reference_axis = &y;
+        complementary_axis = &x;
+    }
+    else {
+
+    	limit = x_limit;
+
+		reference_axis = &x;
+	    complementary_axis = &y;
+    }
+
 
 	int d = (2 * deltaY) - deltaX;
 	int increase_e = 2 * deltaY;
@@ -103,17 +125,17 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 	reference_pixel.row = y;
 	buffer_line.push_back(reference_pixel);
 
-	while(x < final.column) {
+	while(*reference_axis < limit) {
 		if (d <= 0)
 		{
 			d += increase_e;
-			x++;
+			(*reference_axis) += 1;
 		}
 		else
 		{
 			d += increase_ne;
-			x++;
-			y++;
+			(*reference_axis) += 1;
+			(*complementary_axis) += 1;
 		}
 
 
@@ -122,6 +144,15 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 
 		reference_pixel.column = x;
 		reference_pixel.row = y;
+
+
+        if(x_limit != final.column)
+            reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
+        
+        if(y_limit != final.row)
+            reference_pixel.row = initial.row - (reference_pixel.row - initial.row);
+
+
 		buffer_line.push_back(reference_pixel);
 	}
 
