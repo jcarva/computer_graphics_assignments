@@ -114,6 +114,12 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 	int increase_e = 2 * deltaY;
 	int increase_ne = 2 * (deltaY - deltaX);
 
+	// std::clog << "###################" ;
+	// std::clog << std::endl << "LINE: "<< line_name << std::endl;
+	// std::clog << "dx: " << deltaX << std::endl << "dy: " << deltaY << std::endl;
+	// std::clog << "increase_e: " << increase_e << std::endl << "increase_ne: " << increase_ne << std::endl << std::endl;
+	// std::clog << "d: " << d << ", x: " << x  << ", y: " << y << std::endl;
+
 	reference_pixel.column = x;
 	reference_pixel.row = y;
 
@@ -131,7 +137,9 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 			d += increase_ne;
 			(*reference_axis) += 1;
 			(*complementary_axis) += 1;
-		}	
+		}
+
+		//std::clog << "d: " << d << ", x: " << x  << ", y: " << y << std::endl;
 
 		reference_pixel.column = x;
 		reference_pixel.row = y;
