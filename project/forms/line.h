@@ -101,14 +101,15 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 	    complementary_axis = &x;
 	}
 	else {
-
 		limit = x_limit;
 
 		reference_axis = &x;
 		complementary_axis = &y;
 	}
 
-
+	/*
+		Calculate the decision factor and its increase.
+	*/
 	int d = (2 * deltaY) - deltaX;
 	int increase_e = 2 * deltaY;
 	int increase_ne = 2 * (deltaY - deltaX);
@@ -145,7 +146,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 
 
 		/*
-			Revert transformations.
+			Revert transformations when necessary.
 		*/
 		if(x_limit != final.column)
 		    reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
