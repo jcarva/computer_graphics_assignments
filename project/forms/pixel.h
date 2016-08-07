@@ -13,7 +13,7 @@ public:
 	Pixel(int x, int y);
 	~Pixel();
 	int Offset(int column, int row);
-	void PutPixel(int x, int y, int RGBA[4]);	
+	void PutPixel(int x, int y, double RGBA[4]);	
 };
 
 Pixel::Pixel(int x, int y)
@@ -34,15 +34,15 @@ int Pixel::Offset(int column, int row)
 }
 
 
-void Pixel::PutPixel(int x, int y, int RGBA[4])
+void Pixel::PutPixel(int x, int y, double RGBA[4])
 {
-	if ((x >= 0 && x < IMAGE_WIDTH) && (y >= 0 && y < IMAGE_HEIGHT))
+	if ((x >= 0 && x <= IMAGE_WIDTH) && (y >= 0 && y <= IMAGE_HEIGHT))
 	{
 		offset = Offset(x, y);
 
 		for (int i = 0; i < 4; i++)
 		{
-			FBptr[offset + i] = RGBA[i];
+			FBptr[offset + i] = (int)RGBA[i];
 		}
 	}
 	else

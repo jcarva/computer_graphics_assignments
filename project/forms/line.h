@@ -5,13 +5,14 @@
 #include <string>
 #include "pixel.h"
 #include <vector>
+#include <math.h>
 
 class Line
 {
 public:
 	Line();
 	~Line();
-	void DrawLine(std::string line_name, Pixel initial, Pixel final, int color[4]);
+	void DrawLine(std::string line_name, Pixel initial, Pixel final, int initial_color[4], int final_color[4]);
 };
 
 Line::Line()
@@ -24,14 +25,12 @@ Line::~Line()
 	//std::cout << "Line is being deleted" << std::endl;
 }
 
-void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color[4])
+void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initial_color[4], int final_color[4])
 {	
-
 	/*
-		Pixels vector backup to do octante transformations.
+		Printed pixels buffer. Needed to calculate the incremental color to the color interpoloation.
 	*/
 	std::vector<Pixel> buffer_line;
-
 
 	/*
 		Reference Pixel to draw the line, it will be to puted a lot of time in different coordenates.
@@ -66,15 +65,15 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 	/*
 		Set beyond line coordenates.
 	*/
-	if (initial.column > final.column) //Set x limit
+	if (initial.column > final.column) //Set x limit using x0 transformation.
 		x_limit = (initial.column - final.column) + initial.column;
 	else
-		x_limit = final.column;
+		x_limit = final.column; //Base case
 
-	if (initial.row > final.row) //Set y limit
+	if (initial.row > final.row) //Set y limit using y0 transformation.
 		y_limit = (initial.row - final.row) + initial.row;
 	else
-		y_limit = final.row;
+		y_limit = final.row; //Base case
 
 	/*
 		Set deltaX, deltaY. According to the Bresenham Algorithm, these depend of the beyond line coordenates.
@@ -90,7 +89,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 
 
 	/*
-		Set and Change variables to use the Bresenham's Algorithm all octantes.
+		Set and Change variables to use the Bresenham's Algorithm all octantes using y=x transformation.
 	*/
 	if(deltaX < deltaY) {
 	    int tmp = deltaX;
@@ -107,7 +106,7 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 		limit = x_limit;
 
 		reference_axis = &x;
-	    complementary_axis = &y;
+		complementary_axis = &y;
 	}
 
 
@@ -123,9 +122,11 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 
 	reference_pixel.column = x;
 	reference_pixel.row = y;
+
 	buffer_line.push_back(reference_pixel);
 
-	while(*reference_axis < limit) {
+	while(*reference_axis < limit)
+	{
 		if (d <= 0)
 		{
 			d += increase_e;
@@ -138,14 +139,15 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 			(*complementary_axis) += 1;
 		}
 
-
 		//std::clog << "d: " << d << ", x: " << x  << ", y: " << y << std::endl;
-		
 
 		reference_pixel.column = x;
 		reference_pixel.row = y;
 
 
+		/*
+			Revert transformations.
+		*/
 	    if(x_limit != final.column)
 	        reference_pixel.column = initial.column - (reference_pixel.column - initial.column);
 	    
@@ -154,11 +156,51 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int color
 
 
 		buffer_line.push_back(reference_pixel);
+
 	}
 
-	for (int i = 0; i < buffer_line.size(); i++)
+
+	/*
+		Calculate the incremental color. The difference between the final and initail colors are
+		divided over the line.
+	*/
+	double incremental_color[4] = {
+		(double) (final_color[0] - initial_color[0])/(buffer_line.size()),
+		(double) (final_color[1] - initial_color[1])/(buffer_line.size()),
+		(double) (final_color[2] - initial_color[2])/(buffer_line.size()),
+		(double) (final_color[3] - initial_color[3])/(buffer_line.size())
+	};
+
+	//std::clog << "Incremental color: " << "R[" << incremental_color[0] << "], G[" << incremental_color[1] << "], B[" << incremental_color[2] <<"]." << std::endl;
+
+
+	/*
+		Initial set to the resulting color of color interpolation.
+	*/
+	double resulting_color[4] = {
+		(double) initial_color[0],
+		(double) initial_color[1],
+		(double) initial_color[2],
+		(double) initial_color[3]
+	};
+
+	//std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
+
+
+	/*
+		Put pixels and increment color to color interpolation.
+	*/
+	for (int i = 0 ; i < buffer_line.size() ; ++i)
 	{
-		reference_pixel.PutPixel(buffer_line[i].column,buffer_line[i].row,color);
+		reference_pixel.PutPixel(buffer_line[i].column,buffer_line[i].row, resulting_color);
+
+		resulting_color[0] += incremental_color[0];
+		resulting_color[1] += incremental_color[1];
+		resulting_color[2] += incremental_color[2];
+		resulting_color[3] += incremental_color[3];
+
+		//std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
+
 	}
 
 }
