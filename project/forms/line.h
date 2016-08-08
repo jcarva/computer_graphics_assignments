@@ -9,6 +9,11 @@
 class Line
 {
 public:
+	/*
+		Printed pixels buffer. Needed to calculate the incremental color to the color interpoloation.
+	*/
+	std::vector<Pixel> buffer_line;
+
 	Line();
 	~Line();
 	void DrawLine(std::string line_name, Pixel initial, Pixel final, int initial_color[4], int final_color[4]);
@@ -26,11 +31,6 @@ Line::~Line()
 
 void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initial_color[4], int final_color[4])
 {	
-	/*
-		Printed pixels buffer. Needed to calculate the incremental color to the color interpoloation.
-	*/
-	std::vector<Pixel> buffer_line;
-
 	/*
 		Reference Pixel to draw the line, it will be to puted a lot of time in different coordenates.
 	*/
@@ -202,7 +202,6 @@ void Line::DrawLine(std::string line_name, Pixel initial, Pixel final, int initi
 		//std::clog << "Resulting color: " << "R[" << resulting_color[0] << "], G[" << resulting_color[1] << "], B[" << resulting_color[2] <<"]." << std::endl;
 
 	}
-
 }
 
 #endif // _LINE_H_
