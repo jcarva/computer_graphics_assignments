@@ -10,6 +10,7 @@ public:
 	~Triangle();
 	void DrawTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int color_vertex1[4], int color_vertex2[4], int color_vertex3[4]);
 	void DrawFilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int color_vertex1[4], int color_vertex2[4], int color_vertex3[4]);
+	void FilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int color_vertex1[4], int color_vertex2[4], int color_vertex3[4]);
 };
 
 Triangle::Triangle()
@@ -63,7 +64,7 @@ void Triangle::DrawFilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, i
 
 	//std::clog << "Resulting color: " << "R[" << reference_color[0] << "], G[" << reference_color[1] << "], B[" << reference_color[2] <<"]." << std::endl;
 
-	for (int i = 0; i < reference_line.buffer_line.size(); ++i)
+	for (int i = 0; i < reference_line.buffer_line.size() ; ++i)
 	{
 		Line().DrawLine("", vertex1, reference_line.buffer_line[i], color_vertex1, final_color);
 
@@ -81,6 +82,13 @@ void Triangle::DrawFilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, i
 		//std::clog << "Final color: " << "R[" << final_color[0] << "], G[" << final_color[1] << "], B[" << final_color[2] <<"]." << std::endl;
 
 	}
+}
+
+void Triangle::FilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int color_vertex1[4], int color_vertex2[4], int color_vertex3[4])
+{
+	DrawFilledTriangle(vertex1, vertex2, vertex3, color_vertex1, color_vertex2, color_vertex3);
+	DrawFilledTriangle(vertex3, vertex1, vertex2, color_vertex3, color_vertex1, color_vertex2);
+	DrawFilledTriangle(vertex2, vertex3, vertex1, color_vertex2, color_vertex3, color_vertex1);
 }
 
 #endif // _TRIANGLE_H_
