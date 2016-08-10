@@ -10,11 +10,13 @@ As definições e especificações projeto podem ser acessadas através deste [l
 
 Como explanado em sala de aula pelo professor, o conteúdo teórico extra atividade não precisa ser novamente descrito na postagem.
 
-Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel também para download direto. <a href="https://github.com/jcarva/rasterization/archive/master.zip" aria-label="Download jcarva/rasterization on GitHub">Download</a>
+Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel também para [download direto](https://github.com/jcarva/rasterization/archive/master.zip).
 
 As etapas do desenvolvimento do projeto estão divididas em branchs no repositorio.
 
-Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com seu<a href="https://github.com/jcarva/rasterization" aria-label="Star jcarva/rasterization on GitHub">Star</a> no repositorio do projeto.
+Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com seu [Star](https://github.com/jcarva/rasterization) no repositorio do projeto.
+
+
 
 **Tem alguma questão ou sugestão?**																												
 Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
@@ -76,7 +78,6 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 
 ## 3. Interpolação de Cores
 <br>
-
 A interpolação de cores em uma reta é dada pela mudança gradual de cor, ponto a ponto, partindo do ponto inicial com sua respectiva cor até chegar ao ponto final que também possui sua cor.
 
 Sabendo que em nosso sistema de cores RGBA todas as cores possuem uma única e consistente representação númerica, façamos:
