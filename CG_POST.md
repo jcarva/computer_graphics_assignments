@@ -1,3 +1,4 @@
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 # Pipeline Gráfico: Rasterização de Primitivas
 
 ---
@@ -10,7 +11,7 @@ As definições e especificações projeto podem ser acessadas através deste [l
 
 Como explanado em sala de aula pelo professor, o conteúdo teórico extra atividade não precisa ser novamente descrito na postagem.
 
-Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel para download direto. <a class="github-button" href="https://github.com/jcarva/rasterization/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download jcarva/rasterization on GitHub">Download</a>
+Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel também para download direto. <a class="github-button" href="https://github.com/jcarva/rasterization/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download jcarva/rasterization on GitHub">Download</a>
 
 As etapas do desenvolvimento do projeto estão divididas em branchs no repositorio.
 
@@ -76,6 +77,28 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 
 ## 3. Interpolação de Cores
 <br>
+
+A interpolação de cores em uma reta é dada pela mudança gradual de cor, ponto a ponto, partindo do ponto inicial com sua respectiva cor até chegar ao ponto final que também possui sua cor.
+
+Sabendo que em nosso sistema de cores RGBA todas as cores possuem uma única e consistente representação númerica, façamos:
+
+``` c++
+DIFF_COR = COR_FINAL - COR_INICIAL
+```
+Onde ```DIFF_COR``` é a diferença total entre a cor final e inicial, essa é diferença é obtida através da diferença de cada elemento das cores, ou seja :
+
+``` c++
+DIFF_COR.RED = COR_FINAL.RED  - COR_INICIAL.RED
+DIFF_COR.GREEN = COR_FINAL.GREEN  - COR_INICIAL.GREEN
+DIFF_COR.BLUE = COR_FINAL.BLUE  - COR_INICIAL.BLUE
+DIFF_COR.ALPHA = COR_FINAL.ALPHA  - COR_INICIAL.ALPHA```
+
+Caso somemos ```DIFF_COR``` a cor inicial, obteremos diretamente a cor final, porém isso não é uma interpolação, não é uma mudança gradual ponto a ponto. Para uma mudança gradual necessitamos de apenas uma pequena parte de ```DIFF_COR```, que será a cor incremental a cada ponto, a denominaremos de ```DELTA_COR```, e podemos obter a mesma através da expressão :
+
+``` c++
+DELTA_COR = DIFF_COR / TAMANHO_DA_LINHA
+```
+
 
 <p align="center">
   <img src ="./post_images/color_interpolation.png"/>
@@ -211,9 +234,3 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 * [The Bresenham Line-Drawing Algorithm - Department of Computer Science, University of Helsinki](https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html)
 
 * [Transformações Lineares de Reflexão](http://www.feg.unesp.br/~anachiaradia/Material/Cap%2011-%20tipo%20de%20transformacao%20linear.pdf)
-
-
-
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
