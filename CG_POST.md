@@ -1,4 +1,3 @@
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 # Pipeline Gráfico: Rasterização de Primitivas
 
 ---
@@ -11,11 +10,11 @@ As definições e especificações projeto podem ser acessadas através deste [l
 
 Como explanado em sala de aula pelo professor, o conteúdo teórico extra atividade não precisa ser novamente descrito na postagem.
 
-Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel também para download direto. <a class="github-button" href="https://github.com/jcarva/rasterization/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download jcarva/rasterization on GitHub">Download</a>
+Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel também para download direto. <a href="https://github.com/jcarva/rasterization/archive/master.zip" aria-label="Download jcarva/rasterization on GitHub">Download</a>
 
 As etapas do desenvolvimento do projeto estão divididas em branchs no repositorio.
 
-Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com <a class="github-button" href="https://github.com/jcarva/rasterization" data-icon="octicon-star" aria-label="Star jcarva/rasterization on GitHub">Star</a>
+Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com <a href="https://github.com/jcarva/rasterization" aria-label="Star jcarva/rasterization on GitHub">Star</a>
 
 **Tem alguma questão ou sugestão?**																												
 Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
@@ -91,7 +90,8 @@ Onde ```DIFF_COR``` é a diferença total entre a cor final e inicial, essa é d
 DIFF_COR.RED = COR_FINAL.RED  - COR_INICIAL.RED
 DIFF_COR.GREEN = COR_FINAL.GREEN  - COR_INICIAL.GREEN
 DIFF_COR.BLUE = COR_FINAL.BLUE  - COR_INICIAL.BLUE
-DIFF_COR.ALPHA = COR_FINAL.ALPHA  - COR_INICIAL.ALPHA```
+DIFF_COR.ALPHA = COR_FINAL.ALPHA  - COR_INICIAL.ALPHA
+```
 
 Caso somemos ```DIFF_COR``` a cor inicial, obteremos diretamente a cor final, porém isso não é uma interpolação, não é uma mudança gradual ponto a ponto. Para uma mudança gradual necessitamos de apenas uma pequena parte de ```DIFF_COR```, que será a cor incremental a cada ponto, a denominaremos de ```DELTA_COR```, e podemos obter a mesma através da expressão :
 
