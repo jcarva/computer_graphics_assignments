@@ -82,7 +82,9 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 
 ## 4. Desenho de Triângulos
 
-<div><center><img src ="./post_images/draw_triangle.png" /></center></div>
+<p align="center">
+  <img src ="./post_images/draw_triangle.png"/>
+</p>
 ---
 
 ## 5. Preenchimento de Triângulos
@@ -119,7 +121,9 @@ for (int i = 0; i < reference_line.buffer_line.size() ; ++i)
 
 O resultado inicial que obtemos pode ser visualizado na imagem abaixo.
 
-<div><center><img src ="./post_images/draw_filled_triangle.png" /></center></div>
+<p align="center">
+  <img src ="./post_images/draw_filled_triangle.png" />
+</p>
 <br>
 Podemos notar que existem alguns pontos de falha no preenchimento inicial, a explicação para isso é a repetição de alguns pixels de preenchimento em diferentes linhas, onde a consequência é a não rasterização de alguns outros, ou seja, os pontos de falhas. Isso ocorre devido a escolha feita pelo algoritimo de Bresenham para a rasterização do próximo ponto, onde tais pontos algumas vezes coincidem na rasterização de linhas distintas.
 <br>
@@ -138,7 +142,9 @@ void Triangle::FilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int c
 
 Com a chamada da função acima temos o resultado na imagem abaixo.
 
-<div><div><center><img src ="./post_images/filled_triangle.png" /></center></div></dir>
+<p align="center">
+  <img src ="./post_images/filled_triangle.png" />
+</p>
 <br>
 
 Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e sem pontos falhos.
