@@ -23,11 +23,9 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 ## 1. Rasterização de Pontos
 <br>
 Rasterizar pontos é o trabalho de "escrever" tais pontos na memória de vídeo, especialmente no colorbuffer, e que como resultado obtemos uma representação deste ponto na tela, que geralmente podemos denomina-lo pixel. Assim como na descrição matemática, em nosso caso cada ponto é formado por duas coordenadas, x e y que demarcam sua posição no espaço ou tela. Todo ponto representado na tela possui um cor, que é a informação registrada na memória de vídeo.
-<br>
-<br>
+
 Antes de dar continuidade com a rasterização de pontos propriamente dita, é necessario que saibamos como de fato o colorbuffer. Podemos defini-lo como uma estrutura com espaço de coordenadas unidimensional. Sabendo que os pontos representados na tela possuem coordenadas bidimensionais, é necessario um mapeamento 2D => 1D para que possamos ter consistencia ao armazenarmos todos os pontos a serem escritos no colorbuffer.
-<br>
-<br>
+
 Tal mapeamento supracitado pode ser obtido através da função Offset, descrita abaixo.
 
 ``` c++
@@ -39,15 +37,14 @@ int Pixel::Offset(int column, int row)
 Onde o argumento ```column``` representa a coordenada 'x' do ponto em um espaço bidimensional, e o argumento ```row``` representa a coordenada 'y' do mesmo ponto.
 
 O valor de retorno da função Offset corresponde a posição do primeiro dos 4 bytes que guardam a cor do pixel em relação ao endereço do ponteiro do colorbuffer.
-<br>
-<br>
+
 Você pode estar pensando : "***Como assim 4 bytes para uma cor?***"
 
 Em nosso sistema um cor RGBA cada byte representa a intensidade das cores primarias usadas, sendo o primeiro byte para a cor vermelha(Red-R), e dando sequencia com verde(Green-G), azul(Blue-B) e Alpha-A(usado para transparência) respectivamente.
 
 Sabendo disso, agora temos conhecimento suficiente para desenvolver a primeira das funções obrigatorias descritas na [especificação do projeto](https://github.com/jcarva/rasterization/blob/master/project_definition.pdf), a função ***PutPixel***.
 
-###PutPixel
+### PutPixel
 
 ``` c++
 void Pixel::PutPixel(int x, int y, double RGBA[4])
@@ -84,7 +81,9 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 
 <p align="center">
   <img src ="./post_images/draw_triangle.png"/>
+  <h3 align="center">Figura #</h3>
 </p>
+
 ---
 
 ## 5. Preenchimento de Triângulos
@@ -123,12 +122,12 @@ O resultado inicial que obtemos pode ser visualizado na imagem abaixo.
 
 <p align="center">
   <img src ="./post_images/draw_filled_triangle.png" />
+  <h3 align="center">Figura #</h3>
 </p>
-<br>
+
 Podemos notar que existem alguns pontos de falha no preenchimento inicial, a explicação para isso é a repetição de alguns pixels de preenchimento em diferentes linhas, onde a consequência é a não rasterização de alguns outros, ou seja, os pontos de falhas. Isso ocorre devido a escolha feita pelo algoritimo de Bresenham para a rasterização do próximo ponto, onde tais pontos algumas vezes coincidem na rasterização de linhas distintas.
-<br>
-<br>
-O problema citado no paragrafo anterior pode ser simplesmente resolvido com a criação da função ```FilledTriangle```, que faz permutações entre os vertices do triângulo, cambiando o ponto referência inicial e a reta com os pontos finais.
+
+O problema citado no paragrafo anterior pode ser simplesmente resolvido com a criação da função ```FilledTriangle```, que executa o procedimento de preenchimento fazendo permutações entre os vertices do triângulo, cambiando o ponto referência inicial e a reta com os pontos finais.
 
 ``` c++
 void Triangle::FilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int color_vertex1[4], int color_vertex2[4], int color_vertex3[4])
@@ -144,8 +143,8 @@ Com a chamada da função acima temos o resultado na imagem abaixo.
 
 <p align="center">
   <img src ="./post_images/filled_triangle.png" />
+  <h3 align="center">Figura #</h3>
 </p>
-<br>
 
 Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e sem pontos falhos.
 
