@@ -14,7 +14,7 @@ Todo o código citado está disponivel neste [repositorio público](https://gith
 
 As etapas do desenvolvimento do projeto estão divididas em branchs no repositorio.
 
-Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com <a href="https://github.com/jcarva/rasterization" aria-label="Star jcarva/rasterization on GitHub">Star</a>
+Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com seu<a href="https://github.com/jcarva/rasterization" aria-label="Star jcarva/rasterization on GitHub">Star</a> no repositorio do projeto.
 
 **Tem alguma questão ou sugestão?**																												
 Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
@@ -93,12 +93,43 @@ DIFF_COR.BLUE = COR_FINAL.BLUE  - COR_INICIAL.BLUE
 DIFF_COR.ALPHA = COR_FINAL.ALPHA  - COR_INICIAL.ALPHA
 ```
 
-Caso somemos ```DIFF_COR``` a cor inicial, obteremos diretamente a cor final, porém isso não é uma interpolação, não é uma mudança gradual ponto a ponto. Para uma mudança gradual necessitamos de apenas uma pequena parte de ```DIFF_COR```, que será a cor incremental a cada ponto, a denominaremos de ```DELTA_COR```, e podemos obter a mesma através da expressão :
+Caso somemos ```DIFF_COR``` a cor inicial, obteremos diretamente a cor final, porém isso não é uma interpolação, não é uma mudança gradual ponto a ponto. Para uma mudança gradual necessitamos de apenas uma pequena parte de ```DIFF_COR```, que será a cor incrementada a cada ponto, a denominaremos de ```DELTA_COR```, e podemos obter a mesma através da expressão :
 
 ``` c++
 DELTA_COR = DIFF_COR / TAMANHO_DA_LINHA
 ```
+Do mesmo modo que ```DIFF_COR```, o ```DELTA_COR``` é cálculado através da manipulação de cada elemento das cores, ou seja:
 
+``` c++
+double incremental_color[4] = {
+	(double) (final_color[0] - initial_color[0])/(buffer_line.size()),
+	(double) (final_color[1] - initial_color[1])/(buffer_line.size()),
+	(double) (final_color[2] - initial_color[2])/(buffer_line.size()),
+	(double) (final_color[3] - initial_color[3])/(buffer_line.size())
+};
+```
+
+No qual ```buffer_line``` é um atributo público da classe ```Line```, descrito por:
+
+``` c++
+std::vector<Pixel> buffer_line;
+```
+
+Tal atributo armazena todos os pontos da linha a serem desenhados na tela. Onde agora temos dados suficientes para desenhar uma linha completa com interpolação de cores, e isso é feito através da iteração sobre todo o ```buffer_line```.
+
+``` c++
+for (int i = 0 ; i < buffer_line.size() ; ++i)
+{
+	reference_pixel.PutPixel(buffer_line[i].column, buffer_line[i].row, resulting_color);
+
+	resulting_color[0] += incremental_color[0];
+	resulting_color[1] += incremental_color[1];
+	resulting_color[2] += incremental_color[2];
+	resulting_color[3] += incremental_color[3];
+}
+```
+
+O resultado são linhas com interpolações de cores como podemos visualizar na imagem abaixo, diferente da **Figura #** que são as mesmas linhas porém com única cor.
 
 <p align="center">
   <img src ="./post_images/color_interpolation.png"/>
