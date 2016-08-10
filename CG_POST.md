@@ -82,7 +82,7 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 
 ## 4. Desenho de Triângulos
 
-<div style="text-align:center"><img src ="./post_images/draw_triangle.png" /></div>
+<div><center><img src ="./post_images/draw_triangle.png" /></center></div>
 ---
 
 ## 5. Preenchimento de Triângulos
@@ -119,8 +119,29 @@ for (int i = 0; i < reference_line.buffer_line.size() ; ++i)
 
 O resultado inicial que obtemos pode ser visualizado na imagem abaixo.
 
-<div style="text-align:center"><img src ="./post_images/draw_filled_triangle.png" /></div>
-<div style="text-align:center"><img src ="./post_images/filled_triangle.png" /></div>
+<div><center><img src ="./post_images/draw_filled_triangle.png" /></center></div>
+<br>
+Podemos notar que existem alguns pontos de falha no preenchimento inicial, a explicação para isso é a repetição de alguns pixels de preenchimento em diferentes linhas, onde a consequência é a não rasterização de alguns outros, ou seja, os pontos de falhas. Isso ocorre devido a escolha feita pelo algoritimo de Bresenham para a rasterização do próximo ponto, onde tais pontos algumas vezes coincidem na rasterização de linhas distintas.
+<br>
+<br>
+O problema citado no paragrafo anterior pode ser simplesmente resolvido com a criação da função ```FilledTriangle```, que faz permutações entre os vertices do triângulo, cambiando o ponto referência inicial e a reta com os pontos finais.
+
+``` c++
+void Triangle::FilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int color_vertex1[4], int color_vertex2[4], int color_vertex3[4])
+{
+	DrawFilledTriangle(vertex1, vertex2, vertex3, color_vertex1, color_vertex2, color_vertex3);
+	DrawFilledTriangle(vertex3, vertex1, vertex2, color_vertex3, color_vertex1, color_vertex2);
+	DrawFilledTriangle(vertex2, vertex3, vertex1, color_vertex2, color_vertex3, color_vertex1);
+}
+
+```
+
+Com a chamada da função acima temos o resultado na imagem abaixo.
+
+<div><div><center><img src ="./post_images/filled_triangle.png" /></center></div></dir>
+<br>
+
+Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e sem pontos falhos.
 
 ---
 
