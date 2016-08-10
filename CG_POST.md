@@ -74,6 +74,12 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 ---
 
 ## 3. Interpolação de Cores
+<br>
+
+<p align="center">
+  <img src ="./post_images/color_interpolation.png"/>
+  <h5 align="center">Figura #</h5>
+</p>
 
 ---
 
@@ -103,7 +109,7 @@ O resultado da chamada da função pode ser visualizado abaixo.
 
 ## 5. Preenchimento de Triângulos
 <br>
-No inicio desta etapa do projeto, tal tarefa de preencher um triangulo me parecia um tanto difícil, porém após ler mais sobre o problema me veio em mente que este tipo de preenchimento nada mais é do que várias linhas agregagadas, tendo como referência um dos vertices do triândulo e variando o ponto final com suas respectivas mundanças de cores. ***"Hã?"***, ***"Como assim?"***, ***"Que pontos finais são esses?"***, ***"Como saber a mudança da cor?"***
+No inicio desta etapa do projeto, tal tarefa de preencher um triangulo me parecia um tanto difícil, porém após ler mais sobre o problema me veio em mente que este tipo de preenchimento nada mais é do que várias linhas agregagadas, tendo como referência um dos vertices do triângulo e variando o ponto final com suas respectivas mundanças de cores. ***"Hã?"***, ***"Como assim?"***, ***"Que pontos finais são esses?"***, ***"Como saber a mudança da cor?"***
 
 Para um melhor entendimento vamos admitir a existência de um triângulo ABC. Este triângulo possui os vertices A(Xa, Ya), B(Xb, Yb), C(Xc, Yc), e assim como todo triângulo, existêm retas de ligações entre tais vertices, retas AB, BC, CA. Escolhendo o vertice A como referência inicial, e a reta BC como a refência final para o desenho das linhas agregadas, a solução para o problema se mostra quase concluída.
 
@@ -169,7 +175,7 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 
 ---
 
-## Melhorias
+## Possiveis trabalhos futuros
 
 * Assim como o atributo ```buffer_line``` nos objetos da classe ```Line```,  o incremento de cor para o próximo ponto na interpolação de cores também poderia se tornar variavel de instancia da classe. Assim evitando calcular novamente quando feito o preenchimento de triângulos.
 
