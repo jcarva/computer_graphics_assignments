@@ -91,7 +91,7 @@ No inicio desta etapa do projeto, tal tarefa de preencher um triangulo me pareci
 
 Para um melhor entendimento vamos admitir a existência de um triângulo ABC. Este triângulo possui os vertices A(Xa, Ya), B(Xb, Yb), C(Xc, Yc), e assim como todo triângulo, existêm retas de ligações entre tais vertices, retas AB, BC, CA. Escolhendo o vertice A como referência inicial, e a reta BC como a refência final para o desenho das linhas agregadas, a solução para o problema se mostra quase concluída.
 
-O que agora necessitamos é da reta BC e a cor incremental para cada pixel da mesma. Assim como citado na seção ***Interpolação de Cores***, todo objeto linha, possui o atributo público ```buffer_line``` que armazena todos os pontos de tal linha, ou seja, basta criar a linha com ponto inicial B e final C, e obtemos a a reta BC com todos os pixels finais de cada linha de preenchimento.
+O que agora necessitamos é da reta BC e a cor incremental para cada pixel da mesma. Assim como citado na seção ***Interpolação de Cores***, todo objeto linha, possui o atributo público ```buffer_line``` que armazena todos os pontos de tal linha, ou seja, basta criar a linha com ponto inicial B, final C e obtemos a reta BC com todos os pixels finais de cada linha de preenchimento.
 
 ``` c++
 std::vector<Pixel> buffer_line;
@@ -139,6 +139,8 @@ Incremento de cor como variavel de instancia da classe Line.
 ---
 
 ## Referências
+
+* [Bjarne Stroustrup's C++ Style and Technique FAQ](http://www.stroustrup.com/bs_faq2.html)
 
 * [Bresenham's line algorithm - Wikipedia](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 
