@@ -12,7 +12,8 @@ Como explanado em sala de aula pelo professor, o conteúdo teórico extra ativid
 
 Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization).
 
-Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com um "star" no repositorio público.
+Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com um 
+![GitHub Star](post_images/github_star.png) no repositorio público.
 
 **Tem alguma questão ou sugestão?**																												
 Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
@@ -21,7 +22,7 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 
 ## 1. Rasterização de Pontos
 <br>
-Rasterizar pontos é o trabalho de "escrever" tais pontos no colorbuffer, e que como resultado obtemos uma representação deste ponto na tela, que geralmente podemos denomina-lo pixel. Assim como na descrição matemática, em nosso caso cada ponto é formado por duas coordenadas, x e y que demarcam sua posição no espaço ou tela. Todo ponto representado na tela possui um cor, que é a informação registrada na memória de vídeo.
+Rasterizar pontos é o trabalho de "escrever" tais pontos na memória de vídeo, especialmente no colorbuffer, e que como resultado obtemos uma representação deste ponto na tela, que geralmente podemos denomina-lo pixel. Assim como na descrição matemática, em nosso caso cada ponto é formado por duas coordenadas, x e y que demarcam sua posição no espaço ou tela. Todo ponto representado na tela possui um cor, que é a informação registrada na memória de vídeo.
 <br>
 <br>
 Antes de dar continuidade com a rasterização de pontos propriamente dita, é necessario que saibamos como de fato o colorbuffer. Podemos defini-lo como uma estrutura com espaço de coordenadas unidimensional. Sabendo que os pontos representados na tela possuem coordenadas bidimensionais, é necessario um mapeamento 2D => 1D para que possamos ter consistencia ao armazenarmos todos os pontos a serem escritos no colorbuffer.
@@ -44,7 +45,7 @@ Você pode estar pensando : "***Como assim 4 bytes para uma cor?***"
 
 Em nosso sistema um cor RGBA cada byte representa a intensidade das cores primarias usadas, sendo o primeiro byte para a cor vermelha(Red-R), e dando sequencia com verde(Green-G), azul(Blue-B) e Alpha-A(usado para transparência) respectivamente.
 
-Sabendo disso, agora temos conhecimento suficiente para desenvolver a primeira das funções obrigatorias descritas na [especificação](https://github.com/jcarva/rasterization/blob/master/project_definition.pdf) do projeto, a função ***PutPixel***.
+Sabendo disso, agora temos conhecimento suficiente para desenvolver a primeira das funções obrigatorias descritas na [especificação do projeto](https://github.com/jcarva/rasterization/blob/master/project_definition.pdf), a função ***PutPixel***.
 
 ###PutPixel
 
@@ -67,7 +68,7 @@ void Pixel::PutPixel(int x, int y, double RGBA[4])
 }
 ``` 
 
-Com a função acima devidamente implementada já podemos obter os primeiros resultados na tela, veja a as imagens abaixo.
+Com a função acima devidamente implementada já podemos obter os primeiros resultados na tela como mostra a imagem abaixo.
 
 ---
 
@@ -77,9 +78,12 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 
 ## 3. Desenho de Triângulos
 
+<div style="text-align:center"><img src ="./post_images/draw_triangle.png" /></div>
 ---
 
 ## 4. Preenchimento de Triângulos
+<div style="text-align:center"><img src ="./post_images/draw_filled_triangle.png" /></div>
+<div style="text-align:center"><img src ="./post_images/filled_triangle.png" /></div>
 
 ---
 
