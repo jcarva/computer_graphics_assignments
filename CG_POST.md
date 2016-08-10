@@ -76,18 +76,61 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 
 ---
 
-## 3. Desenho de Triângulos
+## 3. Interpolação de Cores
+
+---
+
+## 4. Desenho de Triângulos
 
 <div style="text-align:center"><img src ="./post_images/draw_triangle.png" /></div>
 ---
 
-## 4. Preenchimento de Triângulos
+## 5. Preenchimento de Triângulos
+<br>
+No inicio desta etapa do projeto, tal tarefa de preencher um triangulo me parecia um tanto difícil, porém após ler mais sobre o problema me veio em mente que este tipo de preenchimento nada mais é do que várias linhas agregagadas, tendo como referência um dos vertices do triândulo e variando o ponto final com suas respectivas mundanças de cores. ***"Hã?"***, ***"Como assim?"***, ***"Que pontos finais são esses?"***, ***"Como saber a mudança da cor?"***
+
+Para um melhor entendimento vamos admitir a existência de um triângulo ABC. Este triângulo possui os vertices A(Xa, Ya), B(Xb, Yb), C(Xc, Yc), e assim como todo triângulo, existêm retas de ligações entre tais vertices, retas AB, BC, CA. Escolhendo o vertice A como referência inicial, e a reta BC como a refência final para o desenho das linhas agregadas, a solução para o problema se mostra quase concluída.
+
+O que agora necessitamos é da reta BC e a cor incremental para cada pixel da mesma. Assim como citado na seção ***Interpolação de Cores***, todo objeto linha, possui o atributo público ```buffer_line``` que armazena todos os pontos de tal linha, ou seja, basta criar a linha com ponto inicial B e final C, e obtemos a a reta BC com todos os pixels finais de cada linha de preenchimento.
+
+``` c++
+std::vector<Pixel> buffer_line;
+```
+O dado que nos falta é saber qual é a cor de cada pixel final para o desenho da linha interpolada, onde usamos a mesta solução da seção ***Interpolação de Cores***.
+
+Agora podemos aplicar a solução de preenchimento citada anteriormente, um simples laço que irá desenhar uma linha para cada ponto da reta BC, tendo como inicio o vértice A, e incrementando a cor a cada iteração. 
+
+``` c++
+for (int i = 0; i < reference_line.buffer_line.size() ; ++i)
+{
+	Line().DrawLine("", vertex1, reference_line.buffer_line[i], color_vertex1, final_color);
+
+	reference_color[0] += dColor[0];
+	reference_color[1] += dColor[1];
+	reference_color[2] += dColor[2];
+	reference_color[3] += dColor[3];
+
+	final_color[0] = (int) reference_color[0];
+	final_color[1] = (int) reference_color[1];
+	final_color[2] = (int) reference_color[2];
+	final_color[3] = (int) reference_color[3];
+}
+```
+
+O resultado inicial que obtemos pode ser visualizado na imagem abaixo.
+
 <div style="text-align:center"><img src ="./post_images/draw_filled_triangle.png" /></div>
 <div style="text-align:center"><img src ="./post_images/filled_triangle.png" /></div>
 
 ---
 
 ## Dificuldades
+
+---
+
+## Melhorias
+
+Incremento de cor como variavel de instancia da classe Line.
 
 ---
 
