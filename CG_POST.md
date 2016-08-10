@@ -4,6 +4,17 @@
 
 ## Introdução
 
+Esta postagem é parte obrigatoria da primeira avaliação prática da disciplina de Introdução à Computação Gráfica, ministrada pelo Prof. Christian Pagot no semestre letivo 2016.1.
+
+As definições e especificações projeto podem ser acessadas através deste [link](https://github.com/jcarva/rasterization/blob/master/project_definition.pdf).
+
+Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization).
+
+Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com um "star" no repositorio público.
+
+**Tem alguma questão ou sugestão?**																												
+Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
+
 ---
 
 ## 1. Rasterização de Pontos
