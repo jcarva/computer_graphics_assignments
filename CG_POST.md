@@ -10,10 +10,11 @@ As definições e especificações projeto podem ser acessadas através deste [l
 
 Como explanado em sala de aula pelo professor, o conteúdo teórico extra atividade não precisa ser novamente descrito na postagem.
 
-Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization).
+Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel para download direto. <a class="github-button" href="https://github.com/jcarva/rasterization/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download jcarva/rasterization on GitHub">Download</a>
 
-Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com um 
-![GitHub Star](post_images/github_star.png) no repositorio público.
+As etapas do desenvolvimento do projeto estão divididas em branchs no repositorio.
+
+Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com <a class="github-button" href="https://github.com/jcarva/rasterization" data-icon="octicon-star" aria-label="Star jcarva/rasterization on GitHub">Star</a>
 
 **Tem alguma questão ou sugestão?**																												
 Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
@@ -211,4 +212,8 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 
 * [Transformações Lineares de Reflexão](http://www.feg.unesp.br/~anachiaradia/Material/Cap%2011-%20tipo%20de%20transformacao%20linear.pdf)
 
----
+
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
