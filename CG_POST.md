@@ -171,7 +171,7 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 
 ## Melhorias
 
-Incremento de cor como variavel de instancia da classe Line.
+* Assim como o atributo ```buffer_line``` nos objetos da classe ```Line```,  o incremento de cor para o próximo ponto na interpolação de cores também poderia se tornar variavel de instancia da classe. Assim evitando calcular novamente quando feito o preenchimento de triângulos.
 
 ---
 
