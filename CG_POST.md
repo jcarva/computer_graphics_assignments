@@ -68,7 +68,14 @@ void Pixel::PutPixel(int x, int y, double RGBA[4])
 }
 ``` 
 
-Com a função acima devidamente implementada já podemos obter os primeiros resultados na tela como mostra a imagem abaixo.
+Com a função acima devidamente implementada já podemos obter os primeiros resultados na tela como mostra a **Figura 1**.
+
+<p align="center">
+	<br>
+	<img src ="./post_images/put_pixel.png"/>
+	<h5 align="center">Figura 1</h5>
+	<br>
+</p>
 
 ---
 
@@ -113,10 +120,44 @@ void Line::DrawLine(Pixel initial, Pixel final, int color[4])
 }
 ```
 
+Nesta forma o Algoritmo de Bresenham tem a restrição de suportar somente o 1º octante, isto é, só é capaz de de realizar a rasterização de retas(``` y = mx + b ```) que possuem o coeficiente angular(```0 ≤ m ≤ 1 ```) em um determinado intervalo, ou seja, retas que possuem ângulos entre 0°e 45° quando tenhamos o eixo X como referência.
+
+Podemos conferir a deficiência do algoritmo em sua forma atual, basta tentar renderizar uma reta que foge dos limites do escopo suportado, isto é, ângulos de 0° até 45°. A **Figura 2** mostra a pretensão de renderizar uma reta fora do escopo tolerado, a mesma será denominada de ```OUT```, com ponto inicial ```init(0, 0)``` e final ```final()```.
 
 <p align="center">
-  <img src ="./post_images/draw_line.png"/>
-  <h5 align="center">Figura #</h5>
+	<br>
+	<img src ="./post_images/line_out_of_scope.png"/>
+	<h5 align="center">Figura 2</h5>
+	<br>
+</p>
+
+A reta ```OUT``` foi transformada em uma reta com inclinação de 45° e com tamanho relativo ao valor da coordenada ```x``` no ponto final. Isso ocorre por que o ```deltaY > deltaX```, ou seja, a distancia dos pontos em relação a coordenada ```y``` é maior que a distancia dos pontos em relação a coordenada ```x```. Logo as variaveis ```d(fator de decisão)```, ```increase_e(incremento para a leste)```, ```increase_ne(incremento para nordeste)``` se tornam positivos, resultando com que o algoritmo de Bresenham interprete que a reta possui uma inclinação de 45°, e assim sempre incrementando ambas as coordenadas ```x``` e ```y```. A **Figura 3** mostra os dados obtidos na tentativa de renderizar a reta ```OUT```, e a mesma confirma a explicação dada.
+
+<p align="center">
+	<br>
+	<img src ="./post_images/line_out_of_scope_log.png"/>
+	<h5 align="center">Figura 3</h5>
+	<br>
+</p>
+
+
+Sabendo da existência de tal problema é necessaria uma generalização do algoritmo de rasterização para podermos desenhar qualquer linha, não importando sua inclinação em relação ao ```x```. porém antes é necessaio que entendamos como o espaço utilizado será dividido e conceitos de octantes.
+
+Podemos definir octante como metade de um quadrante do plano cartesiano, e os mesmos são limitados por froonteiras com ângulos de inclinações de 45°. A **Figura 4** ilustra bem o conceito de octantes.
+
+<p align="center">
+	<br>
+	<img src ="./post_images/octantes.jpg"/>
+	<h5 align="center">Figura 4</h5>
+	<br>
+</p>
+
+
+<p align="center">
+	<br>
+	<img src ="./post_images/draw_line.png"/>
+	<h5 align="center">Figura #</h5>
+	<br>
 </p>
 
 ---
@@ -127,12 +168,12 @@ A interpolação de cores em uma reta é dada pela mudança gradual de cor, pont
 
 Sabendo que em nosso sistema de cores RGBA todas as cores possuem uma única e consistente representação númerica, façamos:
 
-``` c++
+``` math
 DIFF_COR = COR_FINAL - COR_INICIAL
 ```
 Onde ```DIFF_COR``` é a diferença total entre a cor final e inicial, essa é diferença é obtida através da diferença de cada elemento das cores, ou seja :
 
-``` c++
+``` math
 DIFF_COR.RED = COR_FINAL.RED  - COR_INICIAL.RED
 DIFF_COR.GREEN = COR_FINAL.GREEN  - COR_INICIAL.GREEN
 DIFF_COR.BLUE = COR_FINAL.BLUE  - COR_INICIAL.BLUE
@@ -141,7 +182,7 @@ DIFF_COR.ALPHA = COR_FINAL.ALPHA  - COR_INICIAL.ALPHA
 
 Caso somemos ```DIFF_COR``` a cor inicial, obteremos diretamente a cor final, porém isso não é uma interpolação, não é uma mudança gradual ponto a ponto. Para uma mudança gradual necessitamos de apenas uma pequena parte de ```DIFF_COR```, que será a cor incrementada a cada ponto, a denominaremos de ```DELTA_COR```, e podemos obter a mesma através da expressão :
 
-``` c++
+``` math
 DELTA_COR = DIFF_COR / TAMANHO_DA_LINHA
 ```
 Do mesmo modo que ```DIFF_COR```, o ```DELTA_COR``` é cálculado através da manipulação de cada elemento das cores, ou seja:
