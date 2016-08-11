@@ -73,6 +73,51 @@ Com a função acima devidamente implementada já podemos obter os primeiros res
 ---
 
 ## 2. Rasterização de Retas
+<br>
+A ação de rasterizar retas é o ato de gerar pontos em um especifico intervalo, podendo ser utilizado para o desenho de linhas na tela.
+
+A tarefa desta etapa pode ser feita de várias maneiras, diferentes métodos e algoritmos. O algoritmo utilizado nesta implementação foi o Algoritmo de Bresenham.
+
+Encarado como um dos mais efetivos para a tarefa de rasterização de linhas, mas a sua forma básica possui algumas limitações, tal forma pode ser visualizada logo abaixo.
+
+``` c++
+void Line::DrawLine(Pixel initial, Pixel final, int color[4])
+{
+	Pixel reference_pixel = Pixel(0,0);
+
+	int deltaX = final.column - initial.column;
+	int deltaY = final.row - initial.row;
+	int d = (2 * deltaY) - deltaX;
+	int increase_e = 2 * deltaY;
+	int increase_ne = 2 * (deltaY - deltaX);
+	int x = initial.column;
+	int y = initial.row;
+
+	reference_pixel.PutPixel(x,y,color);
+
+	while(x < final.column) {
+		if (d <= 0)
+		{
+			d += increase_e;
+			x++;
+		}
+		else
+		{
+			d += increase_ne;
+			x++;
+			y++;
+		}
+		reference_pixel.PutPixel(x,y,color);
+	}
+
+}
+```
+
+
+<p align="center">
+  <img src ="./post_images/draw_line.png"/>
+  <h5 align="center">Figura #</h5>
+</p>
 
 ---
 
