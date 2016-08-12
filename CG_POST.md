@@ -155,22 +155,38 @@ Podemos definir octante como metade de um quadrante do plano cartesiano, e os me
 
 #### Generalização do Algoritimo de Bresenham
 
-Esta etapa do projeto podemos dizer que é onde foi gasto a maior parte do desenvolvimento, porém após uma serie de pesquisas e estudos se chegou a uma conclusão satisfatoria, simples e curta, sem grandes mudanças na forma básica do algoritmo de rasterização utilizado.
+Esta etapa do projeto podemos dizer que é onde foi gasto a maior parte do tempo de desenvolvimento, porém após uma serie de pesquisas e estudos se chegou a uma conclusão satisfatoria, simples e curta, sem grandes mudanças na forma básica do algoritmo de rasterização utilizado.
 
 A primeira tentantiva de generalização foi através da verificação e criação de casos especiais para cada quadrante e octante. Tal solução se mostrou nada eficaz, elegante ou fácil, nos levando a um gasto de energia muito grande, produzindo largos blocos de códigos repetitivos, e muitos condicionais lógicos. A solução se baseava nos seguintes passos :
 
 	1. Calculo das variaveis deltaY e deltaX.
 	2. Examina os valores de deltaY e deltaX com o intuito de indicar se reta cresce ou descrece.
-	3. Caso a reta cresça é atribuido 1 aos incremetos em x e y, caso contrario recebem -1
-	4. Verifica se o valor absoluto de deltaY > deltaX, caso seja troca os valores de x e y de cada extremo.
+	3. Caso a reta cresça é atribuido 1 aos incremetos em x e y, caso contrario recebem -1.
+	4. Verifica se deltaY > deltaX, caso seja troca os valores de x e y. de cada extremo.
 	5. Examina se o valor da coordenada x do primeiro eixo é superior ao valor da primeira coordenada, se for, trocamos os dois eixos do plano.
 
-Onde tal solução logo foi descartada devido a possibilidade de alcançarmos um código mais legivel, com mais vantagens, e sem os problemas já supracitados.
+Onde tal solução logo foi descartada devido a surgimento de erros em casos especificos, a possibilidade de alcançarmos um código mais legivel, com mais vantagens, e sem os problemas já supracitados.
+
+Após a leitura de artigos sobre [transformações lineares](http://www3.fsa.br/localuser/Anastassios/FAENG%20AMBIENTAL%20ALGEBRA%20LINEAR/AL%20A%20Resumo%2010%20Transformacoes%20Lineares%20no%20Plano%20e%20no%20Espa%C3%A7o.pdf), [matrizes de reflexão](http://wiki.ued.ipleiria.pt/wikiEngenharia/index.php/Matriz_de_reflex%C3%A3o) uma nova e simples solução para a generalização do algoritmo de Bresenham surgiu.
+
+A nova solução se resume em aplicar(quando necessario) algumas transformações na reta em que temos a inteção de renderizar. Onde podemos resumir essas tranformações em 4.
+
+
+##### Transformação 1
+
+##### Transformação 2
+
+##### Transformação 3
+
+##### Transformação 4
+
+
+Com o algoritmo de Brensenham devidamente generalizado para qualquer inclinação de reta podemos renderizar linhas na tela, e o resultado pode ser conferido na **Figura 5**.
 
 <p align="center">
 	<br>
 	<img src ="./post_images/draw_line.png"/>
-	<h5 align="center">Figura #</h5>
+	<h5 align="center">Figura 5</h5>
 	<br>
 </p>
 
@@ -230,11 +246,11 @@ for (int i = 0 ; i < buffer_line.size() ; ++i)
 }
 ```
 
-O resultado são linhas com interpolações de cores como podemos visualizar na imagem abaixo, diferente da **Figura #** que são as mesmas linhas porém com única cor.
+O resultado são linhas com interpolações de cores como podemos visualizar na **Figura 6**, que se mostra diferente da **Figura 5**, onde são as mesmas linhas porém com única cor.
 
 <p align="center">
   <img src ="./post_images/color_interpolation.png"/>
-  <h5 align="center">Figura #</h5>
+  <h5 align="center">Figura 6</h5>
 </p>
 
 ---
@@ -347,10 +363,12 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 
 * [Bresenham's line algorithm - Wikipedia](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 
+* [Matrizes de Reflexão](http://wiki.ued.ipleiria.pt/wikiEngenharia/index.php/Matriz_de_reflex%C3%A3o)
+
 * Notas de Aula do Prof. Christian Pagot
 
 * [Shapari - Reflexão em torno da reta y = x](http://www.ufrgs.br/espmat/disciplinas/tutoriais_softwares/shapari/shapari_rfxy.htm)
 
 * [The Bresenham Line-Drawing Algorithm - Department of Computer Science, University of Helsinki](https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html)
 
-* [Transformações Lineares de Reflexão](http://www.feg.unesp.br/~anachiaradia/Material/Cap%2011-%20tipo%20de%20transformacao%20linear.pdf)
+* [Transformações Lineares](http://www3.fsa.br/localuser/Anastassios/FAENG%20AMBIENTAL%20ALGEBRA%20LINEAR/AL%20A%20Resumo%2010%20Transformacoes%20Lineares%20no%20Plano%20e%20no%20Espa%C3%A7o.pdf)
