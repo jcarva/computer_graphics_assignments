@@ -230,7 +230,7 @@ if (initial.column > final.column)		//Set x limit
 else
 	x_limit = final.column; 			//Base case Brenseham Algorithm
 ```
-A equação ```x_limit = (initial.column - final.column) + initial.column``` representa a transformação linear em torno do eixo y. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.column```, que é a distância da coordenada x do ponto inicial da coordenada x da origem.
+A equação ```x_limit = (initial.column - final.column) + initial.column``` representa a transformação linear em torno do eixo y. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.column```, que é a distância da coordenada x do ponto inicial até a coordenada x da origem.
 
 Sabendo que o calculo de um vetor AB, com ponto inicial A(Xa, Ya) e final B(Xb, Yb) é dado por ((Xb - Xa), (Yb - Ya)), e querendo evitar a multiplicação da matriz de transformação por ```-1```, inverte-se a ordem dos operandos para (Xa - Xb), assim chegando a ```x_limit = (initial.column - final.column) + initial.column```.
 
@@ -244,7 +244,7 @@ if (initial.row > final.row)		//Set y limit
 else
 	y_limit = final.row; 			//Base case Brenseham Algorithm
 ```
-A equação ```y_limit = (initial.row - final.row) + initial.row``` representa a transformação linear em torno do eixo x. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.column```, que é a distância da coordenada y do ponto inicial da coordenada y da origem.
+A equação ```y_limit = (initial.row - final.row) + initial.row``` representa a transformação linear em torno do eixo x. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.column```, que é a distância da coordenada y do ponto inicial até a coordenada y da origem.
 
 Sabendo que o calculo de um vetor AB, com ponto inicial A(Xa, Ya) e final B(Xb, Yb) é dado por ((Xb - Xa), (Yb - Ya)), e querendo evitar a multiplicação da matriz de transformação por ```-1```, inverte-se a ordem dos operandos para (Ya - Yb), assim chegando a ```y_limit = (initial.row - final.row) + initial.row```.
 
@@ -273,9 +273,9 @@ else {
 
 O trecho de código acima representa a troca de valores entre ```deltaX``` e  ```deltaY```, a indicação do valor limite para o eixo de referência, e a escolha do eixo referência e do eixo complementar, passos necessarios para que possamos ter uma correta e completa rasterização usando o Algoritmo de Bresenham generalizado.
 
-&&Código do Bresenham generalizado&&
+Com essas transformações devidamente entendidas e implementadas, temos o algoritmo de Bresenham totalmente implementado, podendo ser visualizado na classe [Line](https://github.com/jcarva/rasterization/blob/master/project/forms/line.h), inserido na segunda função obrigatoria descrita na [especificação do projeto](https://github.com/jcarva/rasterization/blob/master/project_definition.pdf), a função ***DrawLine***.
 
-Com o algoritmo de Brensenham devidamente generalizado para qualquer inclinação de reta podemos renderizar linhas na tela, e o resultado pode ser conferido na **Figura 5**.
+Com o algoritmo de Brensenham devidamente generalizado para qualquer inclinação de reta podemos renderizar seja qual for a linha na tela, e o resultado pode ser conferido na **Figura 5**.
 
 <p align="center">
 	<br>
