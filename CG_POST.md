@@ -8,7 +8,7 @@ Esta postagem é parte obrigatoria da primeira avaliação prática da disciplin
 
 As definições e especificações projeto podem ser acessadas através deste [link](https://github.com/jcarva/rasterization/blob/master/project_definition.pdf).
 
-Como explanado em sala de aula pelo professor, o conteúdo teórico extra atividade não precisa ser novamente descrito na postagem.
+Como explanado em sala de aula pelo Prof. Christian Pagot, qualquer conteúdo teórico extra-atividade não obrigatóriamente precisa ser descrito na postagem.
 
 Todo o código citado está disponivel neste [repositorio público](https://github.com/jcarva/rasterization) e acessivel também para [download direto](https://github.com/jcarva/rasterization/archive/master.zip).
 
@@ -210,12 +210,12 @@ DIFF_COR.BLUE = COR_FINAL.BLUE  - COR_INICIAL.BLUE
 DIFF_COR.ALPHA = COR_FINAL.ALPHA  - COR_INICIAL.ALPHA
 ```
 
-Caso somemos ```DIFF_COR``` a cor inicial, obteremos diretamente a cor final, porém isso não é uma interpolação, não é uma mudança gradual ponto a ponto. Para uma mudança gradual necessitamos de apenas uma pequena parte de ```DIFF_COR```, que será a cor incrementada a cada ponto, a denominaremos de ```DELTA_COR```, e podemos obter a mesma através da expressão :
+Caso somemos ```DIFF_COR``` a cor inicial, obteremos diretamente a cor final, porém isso não é uma interpolação, não é uma mudança gradual ponto a ponto. Para uma mudança gradual necessitamos de apenas uma pequena parte de ```DIFF_COR```, que será a cor incrementada a cada ponto, a denominaremos de ```INCREMENTAL_COLOR```, e podemos obter a mesma através da expressão :
 
 ``` math
-DELTA_COR = DIFF_COR / TAMANHO_DA_LINHA
+INCREMENTAL_COLOR = DIFF_COR / TAMANHO_DA_LINHA
 ```
-Do mesmo modo que ```DIFF_COR```, o ```DELTA_COR``` é cálculado através da manipulação de cada elemento das cores, ou seja:
+Do mesmo modo que ```DIFF_COR```, o ```INCREMENTAL_COLOR``` é cálculado através da manipulação de cada elemento das cores, ou seja:
 
 ``` c++
 double incremental_color[4] = {
@@ -271,10 +271,10 @@ void Triangle::DrawTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int col
 }
 ```
 
-O resultado da chamada da função pode ser visualizado abaixo.
+O resultado da chamada da função pode ser **Figura 7**.
 <p align="center">
   <img src ="./post_images/draw_triangle.png"/>
-  <h5 align="center">Figura #</h5>
+  <h5 align="center">Figura 7</h5>
 </p>
 
 ---
@@ -311,11 +311,11 @@ for (int i = 0; i < reference_line.buffer_line.size() ; ++i)
 }
 ```
 
-O resultado inicial que obtemos com o procedimento pode ser visualizado na imagem abaixo.
+O resultado inicial que obtemos com o procedimento pode ser visualizado na **Figura 8** abaixo.
 
 <p align="center">
   <img src ="./post_images/draw_filled_triangle.png" />
-  <h5 align="center">Figura #</h5>
+  <h5 align="center">Figura 8</h5>
 </p>
 
 Podemos notar que existem alguns pontos de falha no preenchimento inicial, a explicação para isso é a repetição de alguns pixels de preenchimento em diferentes linhas, onde a consequência é a não rasterização de alguns outros, ou seja, os pontos de falhas. Isso ocorre devido a escolha feita pelo algoritimo de Bresenham para a rasterização do próximo ponto, onde tais pontos algumas vezes coincidem na rasterização de linhas distintas.
@@ -332,11 +332,11 @@ void Triangle::FilledTriangle(Pixel vertex1, Pixel vertex2, Pixel vertex3, int c
 
 ```
 
-Com a chamada da função acima temos o resultado na imagem abaixo.
+Com a chamada da função acima temos o resultado na **Figura 9**.
 
 <p align="center">
   <img src ="./post_images/filled_triangle.png" />
-  <h5 align="center">Figura #</h5>
+  <h5 align="center">Figura 9</h5>
 </p>
 
 Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e sem pontos falhos.
