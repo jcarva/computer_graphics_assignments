@@ -225,24 +225,28 @@ int y_limit;
 Caso onde a coordenada x do ponto inicial seja maior que a do ponto final, ou seja, ```initial.column > final.column```.
 
 ``` c++
-if (initial.column > final.column)		//Set x limit using x0 transformation
+if (initial.column > final.column)		//Set x limit
 	x_limit = (initial.column - final.column) + initial.column;
 else
 	x_limit = final.column; 			//Base case Brenseham Algorithm
 ```
-&&Explicação da chegada na equação de transformação&&
+A equação ```x_limit = (initial.column - final.column) + initial.column``` representa a transformação linear em torno do eixo y. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.column```, que é a distância da coordenada x do ponto inicial da coordenada x da origem.
+
+Sabendo que o calculo de um vetor AB, com ponto inicial A(Xa, Ya) e final B(Xb, Yb) é dado por ((Xb - Xa), (Yb - Ya)), e querendo evitar a multiplicação da matriz de transformação por ```-1```, inverte-se a ordem dos operandos para (Xa - Xb), assim chegando a ```x_limit = (initial.column - final.column) + initial.column```.
 
 ##### Transformação 2 : ```Reflexão em torno do eixo x, sendo a origem da coordenada y o valor a coordenada y do ponto inicial da será renderizada```
 
 Caso onde a coordenada y do ponto inicial seja maior que a do ponto final, ou seja, ```initial.row > final.row```.
 
 ``` c++
-if (initial.row > final.row)		//Set y limit using y0 transformation
+if (initial.row > final.row)		//Set y limit
 	y_limit = (initial.row - final.row) + initial.row;
 else
 	y_limit = final.row; 			//Base case Brenseham Algorithm
 ```
-&&Explicação da chegada na esquação de transformação&&
+A equação ```y_limit = (initial.row - final.row) + initial.row``` representa a transformação linear em torno do eixo x. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.column```, que é a distância da coordenada y do ponto inicial da coordenada y da origem.
+
+Sabendo que o calculo de um vetor AB, com ponto inicial A(Xa, Ya) e final B(Xb, Yb) é dado por ((Xb - Xa), (Yb - Ya)), e querendo evitar a multiplicação da matriz de transformação por ```-1```, inverte-se a ordem dos operandos para (Ya - Yb), assim chegando a ```y_limit = (initial.row - final.row) + initial.row```.
 
 ##### Transformação 3 : ```Reflexão em torno da reta y = x```
 
