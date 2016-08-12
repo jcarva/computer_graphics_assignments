@@ -68,11 +68,26 @@ void Pixel::PutPixel(int x, int y, double RGBA[4])
 }
 ``` 
 
-Com a função acima devidamente implementada já podemos obter os primeiros resultados na tela como mostra a **Figura 1**.
+Com a função acima devidamente implementada já podemos usa-la como no exemplo abaixo.
+
+``` c++
+double red[4] = { 255, 0, 0, 255 };
+double green[4] = { 0, 255, 0, 255 };
+double blue[4] = { 0, 0, 255, 255 };
+double yellow[4] = { 255, 255, 0, 255 };
+Pixel reference_pixel= Pixel(0,0);
+reference_pixel.PutPixel(140,140, red);
+reference_pixel.PutPixel(140,280, green);
+reference_pixel.PutPixel(280,280, blue);
+reference_pixel.PutPixel(280,420, yellow);
+```
+
+
+Assim obtemos os primeiros resultados na tela como mostra a **Figura 1**.
 
 <p align="center">
 	<br>
-	<img src ="./post_images/put_pixel.png"/>
+	<img src ="./post_images/put_pixel.jpg"/>
 	<h5 align="center">Figura 1</h5>
 	<br>
 </p>
