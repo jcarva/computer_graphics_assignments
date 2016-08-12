@@ -78,10 +78,10 @@ double yellow[4] = { 255, 255, 0, 255 };
 
 Pixel reference_pixel= Pixel(0,0);
 
-reference_pixel.PutPixel(140,140, red);
-reference_pixel.PutPixel(140,280, green);
-reference_pixel.PutPixel(280,280, blue);
-reference_pixel.PutPixel(280,420, yellow);
+reference_pixel.PutPixel(140, 140, red);
+reference_pixel.PutPixel(140, 280, green);
+reference_pixel.PutPixel(280, 280, blue);
+reference_pixel.PutPixel(280, 420, yellow);
 ```
 
 
@@ -193,17 +193,83 @@ Onde tal solução logo foi descartada devido a surgimento de erros em casos esp
 
 Após a leitura de artigos sobre [transformações lineares](http://www3.fsa.br/localuser/Anastassios/FAENG%20AMBIENTAL%20ALGEBRA%20LINEAR/AL%20A%20Resumo%2010%20Transformacoes%20Lineares%20no%20Plano%20e%20no%20Espa%C3%A7o.pdf), [matrizes de reflexão](http://wiki.ued.ipleiria.pt/wikiEngenharia/index.php/Matriz_de_reflex%C3%A3o) uma nova e simples solução para a generalização do algoritmo de Bresenham surgiu.
 
-A nova solução se resume em aplicar(quando necessario) algumas transformações na reta em que temos a inteção de renderizar. Onde podemos resumir essas tranformações em 4.
+A nova solução se resume em aplicar(quando necessario) algumas transformações na reta em que temos a inteção de renderizar. Onde podemos resumir essas tranformações em apenas 3.
 
+Antes da explicação das transformações é necessario que saibamos importantes variaveis utilizadas por elas e pelo algoritmo de Bresenham generalizado.
 
-##### Transformação 1
+``` c++
+/*
+	Variable that represents the 'while' limit to put pixels, always will receive the reference axis' maximum value.
+*/
+int limit;
+```
 
-##### Transformação 2
+``` c++
+/*
+	Respresentation of the reference and complementary axes. They are necessary to generalize the Bresenham Algorithm to any octante, so we need change the 'while' stop condition, and do octante transformations.
+*/
+int * reference_axis;
+int * complementary_axis;
+```
 
-##### Transformação 3
+``` c++
+/*
+	Beyond line coordenates to generalize the Bresenham Algorithm to any octante, so we need change the 'while' stop condition.
+*/
+int x_limit;
+int y_limit;
+```
 
-##### Transformação 4
+##### Transformação 1 : ```Reflexão em torno do eixo y, sendo a origem da coordenada x o valor a coordenada x do ponto inicial da será renderizada```
 
+Caso onde a coordenada x do ponto inicial seja maior que a do ponto final, ou seja, ```initial.column > final.column```.
+
+``` c++
+if (initial.column > final.column)		//Set x limit using x0 transformation
+	x_limit = (initial.column - final.column) + initial.column;
+else
+	x_limit = final.column; 			//Base case Brenseham Algorithm
+```
+&&Explicação da chegada na equação de transformação&&
+
+##### Transformação 2 : ```Reflexão em torno do eixo x, sendo a origem da coordenada y o valor a coordenada y do ponto inicial da será renderizada```
+
+Caso onde a coordenada y do ponto inicial seja maior que a do ponto final, ou seja, ```initial.row > final.row```.
+
+``` c++
+if (initial.row > final.row)		//Set y limit using y0 transformation
+	y_limit = (initial.row - final.row) + initial.row;
+else
+	y_limit = final.row; 			//Base case Brenseham Algorithm
+```
+&&Explicação da chegada na esquação de transformação&&
+
+##### Transformação 3 : ```Reflexão em torno da reta y = x```
+
+Caso onde ```x_limit - initial.column``` for menor que ```y_limit - initial.row```, ou seja, ```deltaX < deltaY```, logo a reta irá inidicar uma inclinação superior à 45º.
+
+``` c++
+if(deltaX < deltaY) {
+    int tmp = deltaX;
+    deltaX = deltaY;
+    deltaY = tmp;
+
+    limit = y_limit;
+
+    reference_axis = &y;
+    complementary_axis = &x;
+}
+else {
+	limit = x_limit;
+
+	reference_axis = &x;
+	complementary_axis = &y;
+}
+```
+
+O trecho de código acima representa a troca de valores entre ```deltaX``` e  ```deltaY```, a indicação do valor limite para o eixo de referência, e a escolha do eixo referência e do eixo complementar, passos necessarios para que possamos ter uma correta e completa rasterização usando o Algoritmo de Bresenham generalizado.
+
+&&Código do Bresenham generalizado&&
 
 Com o algoritmo de Brensenham devidamente generalizado para qualquer inclinação de reta podemos renderizar linhas na tela, e o resultado pode ser conferido na **Figura 5**.
 
