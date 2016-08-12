@@ -25,7 +25,7 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 
 ## 1. Rasterização de Pontos
 <br>
-Rasterizar pontos é o trabalho de "escrever" tais pontos na memória de vídeo, especialmente no colorbuffer, e que como resultado obtemos uma representação deste ponto na tela, que geralmente podemos denomina-lo pixel. Assim como na descrição matemática, em nosso caso cada ponto é formado por duas coordenadas, x e y que demarcam sua posição no espaço ou tela. Todo ponto representado na tela possui um cor, que é a informação registrada na memória de vídeo.
+Rasterizar pontos é o trabalho de "escrever" tais pontos na memória de vídeo, especialmente no colorbuffer, e que como resultado obtemos uma representação deste ponto na tela, que geralmente podemos denomina-lo pixel. Assim como na descrição matemática, em nosso caso cada ponto é formado por duas coordenadas, ```x``` e ```y``` que demarcam sua posição no espaço ou tela. Todo ponto representado na tela possui um cor, que é a informação registrada na memória de vídeo.
 
 Antes de dar continuidade com a rasterização de pontos propriamente dita, é necessario que saibamos como de fato o colorbuffer. Podemos defini-lo como uma estrutura com espaço de coordenadas unidimensional. Sabendo que os pontos representados na tela possuem coordenadas bidimensionais, é necessario um mapeamento 2D => 1D para que possamos ter consistencia ao armazenarmos todos os pontos a serem escritos no colorbuffer.
 
@@ -37,7 +37,7 @@ int Pixel::Offset(int column, int row)
 	return (column  + row * IMAGE_WIDTH) * 4;
 }
 ```
-Onde o argumento ```column``` representa a coordenada 'x' do ponto em um espaço bidimensional, e o argumento ```row``` representa a coordenada 'y' do mesmo ponto.
+Onde o argumento ```column``` representa a coordenada ```x``` do ponto em um espaço bidimensional, e o argumento ```row``` representa a coordenada ```y``` do mesmo ponto.
 
 O valor de retorno da função Offset corresponde a posição do primeiro dos 4 bytes que guardam a cor do pixel em relação ao endereço do ponteiro do colorbuffer.
 
@@ -143,7 +143,7 @@ A reta ```OUT``` foi transformada em uma reta com inclinação de 45° e com tam
 
 Sabendo da existência de tal problema é necessaria uma generalização do algoritmo de rasterização para podermos desenhar qualquer linha, não importando sua inclinação em relação ao ```x```. porém antes é necessaio que entendamos como o espaço utilizado será dividido e conceitos de octantes.
 
-Podemos definir octante como metade de um quadrante do plano cartesiano, e os mesmos são limitados por froonteiras com ângulos de inclinações de 45°. A **Figura 4** ilustra bem o conceito de octantes.
+Podemos definir octante como metade de um quadrante do plano cartesiano, e os mesmos são limitados por fronteiras com ângulos de inclinações de 45°. A **Figura 4** ilustra bem o conceito de octantes.
 
 <p align="center">
 	<br>
@@ -152,6 +152,20 @@ Podemos definir octante como metade de um quadrante do plano cartesiano, e os me
 	<br>
 </p>
 
+
+#### Generalização do Algoritimo de Bresenham
+
+Esta etapa do projeto podemos dizer que é onde foi gasto a maior parte do desenvolvimento, porém após uma serie de pesquisas e estudos se chegou a uma conclusão satisfatoria, simples e curta, sem grandes mudanças na forma básica do algoritmo de rasterização utilizado.
+
+A primeira tentantiva de generalização foi através da verificação e criação de casos especiais para cada quadrante e octante. Tal solução se mostrou nada eficaz, elegante ou fácil, nos levando a um gasto de energia muito grande, produzindo largos blocos de códigos repetitivos, e muitos condicionais lógicos. A solução se baseava nos seguintes passos :
+
+	1. Calculo das variaveis deltaY e deltaX.
+	2. Examina os valores de deltaY e deltaX com o intuito de indicar se reta cresce ou descrece.
+	3. Caso a reta cresça é atribuido 1 aos incremetos em x e y, caso contrario recebem -1
+	4. Verifica se o valor absoluto de deltaY > deltaX, caso seja troca os valores de x e y de cada extremo.
+	5. Examina se o valor da coordenada x do primeiro eixo é superior ao valor da primeira coordenada, se for, trocamos os dois eixos do plano.
+
+Onde tal solução logo foi descartada devido a possibilidade de alcançarmos um código mais legivel, com mais vantagens, e sem os problemas já supracitados.
 
 <p align="center">
 	<br>
@@ -333,19 +347,7 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 
 * [Bresenham's line algorithm - Wikipedia](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 
-* [Diogo Dantas](http://www.assignmentcg.blog.com/)
-
-* [Felipe Alves - Rasterização](https://sites.google.com/site/felipealvesaraujocg/trabalho1)
-
-* [Francisco Matheus - Pipeline Gráfico](http://franciscosouzacg.blogspot.com.br/)
-
-* [Gabriel Soares - TrabalhoICG](https://soaresgabriel.github.io/TrabalhoICG/)
-
-* [Jorismar Barbosa - Rasterização de Pontos e Linhas](http://jorismarbarbosa.blogspot.com.br/)
-
 * Notas de Aula do Prof. Christian Pagot
-
-* [Richelieu Costa - Triangulo, interpolação linear e preenchimento simples com bresenham](http://richelieucosta.wixsite.com/computacaografica/interpolacao-preenchimento-bresenham)
 
 * [Shapari - Reflexão em torno da reta y = x](http://www.ufrgs.br/espmat/disciplinas/tutoriais_softwares/shapari/shapari_rfxy.htm)
 
