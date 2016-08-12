@@ -75,7 +75,9 @@ double red[4] = { 255, 0, 0, 255 };
 double green[4] = { 0, 255, 0, 255 };
 double blue[4] = { 0, 0, 255, 255 };
 double yellow[4] = { 255, 255, 0, 255 };
+
 Pixel reference_pixel= Pixel(0,0);
+
 reference_pixel.PutPixel(140,140, red);
 reference_pixel.PutPixel(140,280, green);
 reference_pixel.PutPixel(280,280, blue);
@@ -103,7 +105,7 @@ A tarefa desta etapa pode ser feita de várias maneiras, diferentes métodos e a
 Encarado como um dos mais efetivos para a tarefa de rasterização de linhas, mas a sua forma básica possui algumas limitações, tal forma pode ser visualizada logo abaixo.
 
 ``` c++
-void Line::DrawLine(Pixel initial, Pixel final, int color[4])
+void Line::DrawLine(Pixel initial, Pixel final, double color[4])
 {
 	Pixel reference_pixel = Pixel(0,0);
 
@@ -137,7 +139,14 @@ void Line::DrawLine(Pixel initial, Pixel final, int color[4])
 
 Nesta forma o Algoritmo de Bresenham tem a restrição de suportar somente o 1º octante, isto é, só é capaz de de realizar a rasterização de retas(``` y = mx + b ```) que possuem o coeficiente angular(```0 ≤ m ≤ 1 ```) em um determinado intervalo, ou seja, retas que possuem ângulos entre 0°e 45° quando tenhamos o eixo X como referência.
 
-Podemos conferir a deficiência do algoritmo em sua forma atual, basta tentar renderizar uma reta que foge dos limites do escopo suportado, isto é, ângulos de 0° até 45°. A **Figura 2** mostra a pretensão de renderizar uma reta fora do escopo tolerado, a mesma será denominada de ```OUT```, com ponto inicial ```init(0, 0)``` e final ```final()```.
+Podemos conferir a deficiência do algoritmo em sua forma atual, basta tentar renderizar uma reta que foge dos limites do escopo suportado, isto é, ângulos de 0° até 45°. 
+
+``` c++
+double red[4] = {255, 0, 0, 255};
+Line().DrawLine("OUT", Pixel(0,0), Pixel(100,150), red);
+```
+
+A **Figura 2** mostra a pretensão de renderizar uma reta fora do escopo tolerado, a mesma será denominada de ```OUT```, com ponto inicial ```init(0, 0)``` e final ```final(100,150)```.
 
 <p align="center">
 	<br>
@@ -146,7 +155,7 @@ Podemos conferir a deficiência do algoritmo em sua forma atual, basta tentar re
 	<br>
 </p>
 
-A reta ```OUT``` foi transformada em uma reta com inclinação de 45° e com tamanho relativo ao valor da coordenada ```x``` no ponto final. Isso ocorre por que o ```deltaY > deltaX```, ou seja, a distancia dos pontos em relação a coordenada ```y``` é maior que a distancia dos pontos em relação a coordenada ```x```. Logo as variaveis ```d(fator de decisão)```, ```increase_e(incremento para a leste)```, ```increase_ne(incremento para nordeste)``` se tornam positivos, resultando com que o algoritmo de Bresenham interprete que a reta possui uma inclinação de 45°, e assim sempre incrementando ambas as coordenadas ```x``` e ```y```. A **Figura 3** mostra os dados obtidos na tentativa de renderizar a reta ```OUT```, e a mesma confirma a explicação dada.
+A reta ```OUT``` foi transformada em uma reta com inclinação de 45° e com tamanho relativo ao valor da coordenada ```x``` no ponto final. Isso ocorre por que o ```deltaY > deltaX```, ou seja, a distancia dos pontos em relação a coordenada ```y``` é maior que a distancia dos pontos em relação a coordenada ```x```. Logo as variaveis ```d(fator de decisão)```, ```increase_e(incremento para a leste)```, ```increase_ne(incremento para nordeste)``` se tornam positivos, resultando com que o algoritmo de Bresenham interprete que a reta possui uma inclinação de 45°, e assim sempre incrementando ambas as coordenadas ```x``` e ```y```. A **Figura 3** mostra os dados obtidos(somente uma parte dos dados estão sendo mostradas, pois o padrão se repete até o fim do processamento) na tentativa de renderizar a reta ```OUT```, e a mesma confirma a explicação dada.
 
 <p align="center">
 	<br>
