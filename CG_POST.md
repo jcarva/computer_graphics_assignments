@@ -27,7 +27,7 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 <br>
 Rasterizar pontos é o trabalho de "escrever" tais pontos na memória de vídeo, especialmente no colorbuffer, e que como resultado obtemos uma representação deste ponto na tela, que geralmente podemos denomina-lo pixel. Assim como na descrição matemática, em nosso caso cada ponto é formado por duas coordenadas, ```x``` e ```y``` que demarcam sua posição no espaço ou tela. Todo ponto representado na tela possui um cor, que é a informação registrada na memória de vídeo.
 
-Antes de dar continuidade com a rasterização de pontos propriamente dita, é necessario que saibamos como de fato o colorbuffer. Podemos defini-lo como uma estrutura com espaço de coordenadas unidimensional. Sabendo que os pontos representados na tela possuem coordenadas bidimensionais, é necessario um mapeamento 2D => 1D para que possamos ter consistencia ao armazenarmos todos os pontos a serem escritos no colorbuffer.
+Antes de dar continuidade com a rasterização de pontos propriamente dita, é necessario que saibamos como de fato o colorbuffer funciona. Podemos defini-lo como uma estrutura com espaço de coordenadas unidimensional. Sabendo que os pontos representados na tela possuem coordenadas bidimensionais, é necessario um mapeamento 2D => 1D para que possamos ter consistencia ao armazenarmos todos os pontos a serem escritos no colorbuffer.
 
 Tal mapeamento supracitado pode ser obtido através da função Offset, descrita abaixo.
 
@@ -165,7 +165,7 @@ A reta ```OUT``` foi transformada em uma reta com inclinação de 45° e com tam
 </p>
 
 
-Sabendo da existência de tal problema é necessaria uma generalização do algoritmo de rasterização para podermos desenhar qualquer linha, não importando sua inclinação em relação ao ```x```. porém antes é necessaio que entendamos como o espaço utilizado será dividido e conceitos de octantes.
+Sabendo da existência de tal problema é necessaria uma generalização do algoritmo de rasterização para podermos desenhar qualquer linha, não importando sua inclinação em relação ao eixo x. Porém antes é necessario que entendamos como o espaço utilizado será dividido e conceitos de octantes.
 
 Podemos definir octante como metade de um quadrante do plano cartesiano, e os mesmos são limitados por fronteiras com ângulos de inclinações de 45°. A **Figura 4** ilustra bem o conceito de octantes.
 
@@ -189,9 +189,9 @@ A primeira tentantiva de generalização foi através da verificação e criaç�
 	4. Verifica se deltaY > deltaX, caso seja troca os valores de x e y. de cada extremo.
 	5. Examina se o valor da coordenada x do primeiro eixo é superior ao valor da primeira coordenada, se for, trocamos os dois eixos do plano.
 
-Onde tal solução logo foi descartada devido a surgimento de erros em casos especificos, a possibilidade de alcançarmos um código mais legivel, com mais vantagens, e sem os problemas já supracitados.
+Tal solução logo foi descartada devido a surgimento de erros em casos especificos, a possibilidade de alcançarmos um código mais legivel, com mais vantagens, e sem os problemas já supracitados.
 
-Após a leitura de artigos sobre [transformações lineares](http://www3.fsa.br/localuser/Anastassios/FAENG%20AMBIENTAL%20ALGEBRA%20LINEAR/AL%20A%20Resumo%2010%20Transformacoes%20Lineares%20no%20Plano%20e%20no%20Espa%C3%A7o.pdf), [matrizes de reflexão](http://wiki.ued.ipleiria.pt/wikiEngenharia/index.php/Matriz_de_reflex%C3%A3o) uma nova e simples solução para a generalização do algoritmo de Bresenham surgiu.
+Após a leitura de artigos sobre [transformações lineares](http://www3.fsa.br/localuser/Anastassios/FAENG%20AMBIENTAL%20ALGEBRA%20LINEAR/AL%20A%20Resumo%2010%20Transformacoes%20Lineares%20no%20Plano%20e%20no%20Espa%C3%A7o.pdf) e [matrizes de reflexão](http://wiki.ued.ipleiria.pt/wikiEngenharia/index.php/Matriz_de_reflex%C3%A3o) uma nova e simples solução para a generalização do algoritmo de Bresenham surgiu.
 
 A nova solução se resume em aplicar(quando necessario) algumas transformações na reta em que temos a inteção de renderizar. Onde podemos resumir essas tranformações em apenas 3.
 
@@ -220,7 +220,7 @@ int x_limit;
 int y_limit;
 ```
 
-##### Transformação 1 : ```Reflexão em torno do eixo y, sendo a origem da coordenada x o valor a coordenada x do ponto inicial da será renderizada```
+##### Transformação 1 : ```Reflexão em torno do eixo y, sendo a origem da coordenada x o valor a coordenada x do ponto inicial da reta será renderizada```
 
 Caso onde a coordenada x do ponto inicial seja maior que a do ponto final, ou seja, ```initial.column > final.column```.
 
@@ -244,7 +244,7 @@ if (initial.row > final.row)		//Set y limit
 else
 	y_limit = final.row; 			//Base case Brenseham Algorithm
 ```
-A equação ```y_limit = (initial.row - final.row) + initial.row``` representa a transformação linear em torno do eixo x. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.column```, que é a distância da coordenada y do ponto inicial até a coordenada y da origem.
+A equação ```y_limit = (initial.row - final.row) + initial.row``` representa a transformação linear em torno do eixo x. Estando ciente que as matrizes de transformações usadas como referência são para retas com o ponto inicial na origem, é necessario a soma da variavel ```initial.row```, que é a distância da coordenada y do ponto inicial até a coordenada y da origem.
 
 Sabendo que o calculo de um vetor AB, com ponto inicial A(Xa, Ya) e final B(Xb, Yb) é dado por ((Xb - Xa), (Yb - Ya)), e querendo evitar a multiplicação da matriz de transformação por ```-1```, inverte-se a ordem dos operandos para (Ya - Yb), assim chegando a ```y_limit = (initial.row - final.row) + initial.row```.
 
@@ -271,7 +271,7 @@ else {
 }
 ```
 
-O trecho de código acima representa a troca de valores entre ```deltaX``` e  ```deltaY```, a indicação do valor limite para o eixo de referência, e a escolha do eixo referência e do eixo complementar, passos necessarios para que possamos ter uma correta e completa rasterização usando o Algoritmo de Bresenham generalizado.
+O trecho de código acima representa a troca de valores entre ```deltaX``` e  ```deltaY```, a indicação do valor limite para o eixo de referência, e a escolha do eixo de referência e do eixo complementar, passos necessarios para que possamos ter uma correta e completa rasterização usando o Algoritmo de Bresenham generalizado.
 
 Com essas transformações devidamente entendidas e implementadas, temos o algoritmo de Bresenham totalmente implementado, podendo ser visualizado na classe [Line](https://github.com/jcarva/rasterization/blob/master/project/forms/line.h), inserido na segunda função obrigatoria descrita na [especificação do projeto](https://github.com/jcarva/rasterization/blob/master/project_definition.pdf), a função ***DrawLine***.
 
@@ -384,7 +384,7 @@ O que agora necessitamos é da reta BC e a cor incremental para cada pixel da me
 ``` c++
 std::vector<Pixel> buffer_line;
 ```
-O dado que nos falta é saber qual é a cor de cada pixel final para o desenho da linha interpolada, onde usamos a mesta solução da seção ***Interpolação de Cores***.
+O dado que nos falta é saber qual é a cor de cada pixel final para o desenho da linha interpolada, onde usamos a mesma solução da seção ***Interpolação de Cores***.
 
 Agora podemos aplicar a solução de preenchimento citada anteriormente, um simples laço que irá desenhar uma linha para cada ponto da reta BC, tendo como inicio o vértice A, e incrementando a cor a cada iteração. 
 
@@ -439,6 +439,8 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 
 ## Dificuldades
 
+* Encontrar a melhor maneira para a generalização do algoritimo de rasterização foi a parte mais árdua de todo o projeto, levando a maior parte do tempo de desenvolvimento.
+
 ---
 
 ## Possiveis trabalhos futuros
@@ -448,6 +450,8 @@ Assim obtendo um resultado satisfatorio, um triângulo totalmente preenchido e s
 ---
 
 ## Conclusão
+
+Com este trabalho pude entender bem o funcionamento de uma rasterização, fixando os conceitos iniciais de computação gráfica de uma maneira pratica. Estudar uma melhor de maneira de implementar o algoritmo me trouxe uma visão mais ampla sobre como eu posso manipular objetos em espaços gráficos.
 
 ---
 
