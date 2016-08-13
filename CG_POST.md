@@ -220,7 +220,7 @@ int x_limit;
 int y_limit;
 ```
 
-##### Transformação 1 : ```Reflexão em torno do eixo y, sendo a origem da coordenada x o valor a coordenada x do ponto inicial da reta será renderizada```
+##### Transformação 1 : ```Reflexão em torno do eixo y, sendo a origem da coordenada x o valor a coordenada x do ponto inicial da reta que será renderizada```
 
 Caso onde a coordenada x do ponto inicial seja maior que a do ponto final, ou seja, ```initial.column > final.column```.
 
@@ -234,7 +234,7 @@ A equação ```x_limit = (initial.column - final.column) + initial.column``` rep
 
 Sabendo que o calculo de um vetor AB, com ponto inicial A(Xa, Ya) e final B(Xb, Yb) é dado por ((Xb - Xa), (Yb - Ya)), e querendo evitar a multiplicação da matriz de transformação por ```-1```, inverte-se a ordem dos operandos para (Xa - Xb), assim chegando a ```x_limit = (initial.column - final.column) + initial.column```.
 
-##### Transformação 2 : ```Reflexão em torno do eixo x, sendo a origem da coordenada y o valor a coordenada y do ponto inicial da será renderizada```
+##### Transformação 2 : ```Reflexão em torno do eixo x, sendo a origem da coordenada y o valor a coordenada y do ponto inicial da reta que será renderizada```
 
 Caso onde a coordenada y do ponto inicial seja maior que a do ponto final, ou seja, ```initial.row > final.row```.
 
