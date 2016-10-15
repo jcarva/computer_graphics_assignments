@@ -58,8 +58,10 @@ Matrix::~Matrix()
 void Matrix::SetMatrix(vector<double> values)
 {
 
-    if(rows*columns != values.size())
+    if (rows * columns != values.size())
+    {
         throw overflow_error("The matrix do not support the inserted set size");
+    }
 
     int current_value_index = 0;
 
@@ -84,6 +86,16 @@ vector<int> Matrix::GetDimensions()
     return  dimensions;
 }
 
+void Matrix::SetValue(int row, int column, double value)
+{
+    if(rows <= row  || columns <= column)
+    {
+        throw overflow_error("The position is out of range");
+    }
+
+    matrix[row][column] = value;
+}
+
 void Matrix::Display() {
 
     for(int r = 0; r < rows; r++)
@@ -102,7 +114,9 @@ void Matrix::Display() {
     clog << endl;
 }
 
-int main(){
+
+int main()
+{
     vector<double> myvector;
     for (int i=1; i<=20; i++) myvector.push_back(i+50);
 
@@ -114,6 +128,9 @@ int main(){
     vector<int> back = Bt.GetDimensions();
     clog << "ROWS: " << back[0] << ", COLUMNS: " << back[1] << endl;
 
+    Bt.SetValue(1,3,9);
+    Bt.SetValue(2,1,12);
+    Bt.Display();
 
     return 0;
 }
