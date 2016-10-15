@@ -24,8 +24,8 @@ class Matrix
 
         void LoadIdentityMatrix();
 
-        void Multiplication(Matrix& m1, Matrix& m2);
-        void Division(Matrix& m, double division_factor);
+        void MatrixMultiplication(Matrix& m1, Matrix& m2);
+        void DivisionByScalar(Matrix& m, double scalar);
 
         void Display();
 };
@@ -67,7 +67,7 @@ void Matrix::SetMatrix(vector<double> values)
     for(int r = 0; r < rows; r++)
     {
 
-        for(int c = 0; c < this->columns; c++)
+        for(int c = 0; c < columns; c++)
         {
 
             matrix[r][c] = values[current_value_index];
@@ -112,7 +112,7 @@ void Matrix::LoadIdentityMatrix()
     for(int r = 0; r < rows; r++)
     {
 
-        for(int c = 0; c < this->columns; c++)
+        for(int c = 0; c < columns; c++)
         {
 
             if(r == c)
@@ -128,7 +128,7 @@ void Matrix::LoadIdentityMatrix()
     }
 }
 
-void Matrix::Multiplication(Matrix& m1, Matrix& m2)
+void Matrix::MatrixMultiplication(Matrix& m1, Matrix& m2)
 {
     vector<int> m1_dimensions = m1.GetDimensions();
     vector<int> m2_dimensions = m2.GetDimensions();
@@ -162,12 +162,32 @@ void Matrix::Multiplication(Matrix& m1, Matrix& m2)
 
 }
 
+void Matrix::DivisionByScalar(Matrix& m, double scalar)
+{
+    if(scalar == 0.0)
+    {
+        throw std::overflow_error("Division by 0 is undefined");
+    }
+
+    for(int r = 0; r < rows; r++)
+    {
+
+        for(int c = 0; c < columns; c++)
+        {
+
+            SetValue(r, c, m.GetValue(r, c)/scalar);
+
+        }
+
+    }
+}
+
 void Matrix::Display() {
 
     for(int r = 0; r < rows; r++)
     {
 
-        for(int c = 0; c < this->columns; c++)
+        for(int c = 0; c < columns; c++)
         {
 
             clog << " " << matrix[r][c];
@@ -194,6 +214,7 @@ int main()
 
     Bt.SetValue(0, 3, 1);
     Bt.SetValue(2, 2, 23);
+    Bt.SetValue(3, 2, 133);
     Bt.Display();
 
 //    vector<int> back = Bt.GetDimensions();
@@ -210,7 +231,11 @@ int main()
 
 //    Bt.Display();
 
-    RES.Multiplication(Bt, Bt);
+    RES.MatrixMultiplication(Bt, Bt);
+
+    RES.Display();
+
+    RES.DivisionByScalar(RES, 0.37);
 
     RES.Display();
 
