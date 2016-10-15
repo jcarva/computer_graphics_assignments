@@ -1,3 +1,6 @@
+#ifndef _MATRIX_H_
+#define _MATRIX_H_
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -201,44 +204,5 @@ void Matrix::Display() {
     clog << endl;
 }
 
+#endif // _MATRIX_H_
 
-int main()
-{
-    vector<double> myvector;
-    for (int i=11; i<=11+15; i++) myvector.push_back(i);
-
-
-    Matrix Bt(4, 4);
-    Matrix RES(4, 4);
-    Bt.SetMatrix(myvector);
-
-    Bt.SetValue(0, 3, 1);
-    Bt.SetValue(2, 2, 23);
-    Bt.SetValue(3, 2, 133);
-    Bt.Display();
-
-//    vector<int> back = Bt.GetDimensions();
-//    clog << " ROWS: " << back[0] << ", COLUMNS: " << back[1] << endl << endl;
-
-//    Bt.SetValue(1,3,9);
-//    Bt.SetValue(2,1,12);
-
-//    Bt.Display();
-//
-//    clog << " MATRIX[2][3]: " << Bt.GetValue(2,1) << endl << endl;
-
-//    Bt.LoadIdentityMatrix();
-
-//    Bt.Display();
-
-    RES.MatrixMultiplication(Bt, Bt);
-
-    RES.Display();
-
-    RES.DivisionByScalar(RES, 0.37);
-
-    RES.Display();
-
-
-    return 0;
-}
