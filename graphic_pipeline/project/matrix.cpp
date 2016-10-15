@@ -96,6 +96,15 @@ void Matrix::SetValue(int row, int column, double value)
     matrix[row][column] = value;
 }
 
+double Matrix::GetValue(int row, int column)
+{
+    if(rows <= row  || columns <= column)
+    {
+        throw overflow_error("The position is out of range");
+    }
+    return matrix[row][column];
+}
+
 void Matrix::Display() {
 
     for(int r = 0; r < rows; r++)
@@ -126,11 +135,15 @@ int main()
     Bt.Display();
 
     vector<int> back = Bt.GetDimensions();
-    clog << "ROWS: " << back[0] << ", COLUMNS: " << back[1] << endl;
+    clog << " ROWS: " << back[0] << ", COLUMNS: " << back[1] << endl << endl;
 
     Bt.SetValue(1,3,9);
     Bt.SetValue(2,1,12);
+
     Bt.Display();
+
+    clog << "MATRIX[2][3]: " << Bt.GetValue(2,1) << endl;
+
 
     return 0;
 }
