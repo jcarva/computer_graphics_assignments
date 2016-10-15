@@ -92,7 +92,6 @@ void Matrix::SetValue(int row, int column, double value)
     {
         throw overflow_error("The position is out of range");
     }
-
     matrix[row][column] = value;
 }
 
@@ -103,6 +102,32 @@ double Matrix::GetValue(int row, int column)
         throw overflow_error("The position is out of range");
     }
     return matrix[row][column];
+}
+
+void Matrix::LoadIdentityMatrix()
+{
+    if(rows != columns)
+    {
+        throw overflow_error("Impossible LoadIdentity, this matrix is not a square matrix.");
+    }
+
+    for(int r = 0; r < rows; r++)
+    {
+
+        for(int c = 0; c < this->columns; c++)
+        {
+
+            if(r == c)
+            {
+                matrix[c][r] = 1;
+            }
+            else
+            {
+                matrix[c][r] = 0;
+            }
+
+        }
+    }
 }
 
 void Matrix::Display() {
@@ -127,10 +152,10 @@ void Matrix::Display() {
 int main()
 {
     vector<double> myvector;
-    for (int i=1; i<=20; i++) myvector.push_back(i+50);
+    for (int i=1; i<=16; i++) myvector.push_back(i+50);
 
 
-    Matrix Bt(4, 5);
+    Matrix Bt(4, 4);
     Bt.SetMatrix(myvector);
     Bt.Display();
 
@@ -142,8 +167,11 @@ int main()
 
     Bt.Display();
 
-    clog << "MATRIX[2][3]: " << Bt.GetValue(2,1) << endl;
+    clog << " MATRIX[2][3]: " << Bt.GetValue(2,1) << endl << endl;
 
+    Bt.LoadIdentityMatrix();
+
+    Bt.Display();
 
     return 0;
 }
