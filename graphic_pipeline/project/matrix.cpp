@@ -62,7 +62,6 @@ void Matrix::SetMatrix(vector<double> values)
     {
         throw overflow_error("The matrix do not support the inserted set size");
     }
-
     int current_value_index = 0;
 
     for(int r = 0; r < rows; r++)
@@ -82,7 +81,6 @@ void Matrix::SetMatrix(vector<double> values)
 vector<int> Matrix::GetDimensions()
 {
     vector<int> dimensions{rows, columns};
-
     return  dimensions;
 }
 
@@ -130,6 +128,40 @@ void Matrix::LoadIdentityMatrix()
     }
 }
 
+void Matrix::Multiplication(Matrix& m1, Matrix& m2)
+{
+    vector<int> m1_dimensions = m1.GetDimensions();
+    vector<int> m2_dimensions = m2.GetDimensions();
+
+    if(m1_dimensions[1] != m2_dimensions[0] || rows != m2_dimensions[0] || columns != m2_dimensions[1])
+    {
+        throw std::overflow_error("There is not compatibility in the dimensions of the matrices.");
+    }
+    vector<double> result;
+    result.resize(rows * columns);
+
+    for(int r = 0; r < rows; r++)
+    {
+
+        for(int c = 0; c < columns; c++) {
+
+            result[columns * r + c] = 0.0;
+
+            for(int cr = 0; cr < m1_dimensions[1]; cr++)
+            {
+
+                result[columns * r + c] += m1.GetValue(r, cr) * m2.GetValue(cr, c);
+
+            }
+
+        }
+
+    }
+
+    SetMatrix(result);
+
+}
+
 void Matrix::Display() {
 
     for(int r = 0; r < rows; r++)
@@ -143,6 +175,7 @@ void Matrix::Display() {
         }
 
         clog << endl;
+
     }
 
     clog << endl;
@@ -152,26 +185,35 @@ void Matrix::Display() {
 int main()
 {
     vector<double> myvector;
-    for (int i=1; i<=16; i++) myvector.push_back(i+50);
+    for (int i=11; i<=11+15; i++) myvector.push_back(i);
 
 
     Matrix Bt(4, 4);
+    Matrix RES(4, 4);
     Bt.SetMatrix(myvector);
+
+    Bt.SetValue(0, 3, 1);
+    Bt.SetValue(2, 2, 23);
     Bt.Display();
 
-    vector<int> back = Bt.GetDimensions();
-    clog << " ROWS: " << back[0] << ", COLUMNS: " << back[1] << endl << endl;
+//    vector<int> back = Bt.GetDimensions();
+//    clog << " ROWS: " << back[0] << ", COLUMNS: " << back[1] << endl << endl;
 
-    Bt.SetValue(1,3,9);
-    Bt.SetValue(2,1,12);
+//    Bt.SetValue(1,3,9);
+//    Bt.SetValue(2,1,12);
 
-    Bt.Display();
+//    Bt.Display();
+//
+//    clog << " MATRIX[2][3]: " << Bt.GetValue(2,1) << endl << endl;
 
-    clog << " MATRIX[2][3]: " << Bt.GetValue(2,1) << endl << endl;
+//    Bt.LoadIdentityMatrix();
 
-    Bt.LoadIdentityMatrix();
+//    Bt.Display();
 
-    Bt.Display();
+    RES.Multiplication(Bt, Bt);
+
+    RES.Display();
+
 
     return 0;
 }
