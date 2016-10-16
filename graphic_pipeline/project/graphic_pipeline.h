@@ -13,25 +13,6 @@ Matrix viewport(4, 4);
 
 double d;
 
-void ViewPlaneDistance(double distance)
-{
-    d = distance;
-    projection.SetValue(2, 3, d);
-    projection.SetValue(3, 2, (-1) / d);
-    projection.SetValue(3, 3, 0);
-
-    projection.Display(); // Just to log
-}
-
-void PipelineLoader()
-{
-    model.LoadIdentityMatrix();
-    view.LoadIdentityMatrix();
-    projection.LoadIdentityMatrix();
-    viewport.LoadIdentityMatrix();
-    ViewPlaneDistance(1);
-}
-
 void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)
 {
     Matrix scale_matrix(4, 4);
@@ -115,7 +96,7 @@ double VectorNorm(Vector * vector)
     );
 }
 
-void ViewMatrix(vector<double> cam_position, vector<double> look_at, vector<double> up)
+void LookAt(vector<double> cam_position, vector<double> look_at, vector<double> up)
 {
     Vector x_cam(3, 1);
     Vector y_cam(3, 1);
@@ -159,6 +140,51 @@ void ViewMatrix(vector<double> cam_position, vector<double> look_at, vector<doub
     view.MatrixMultiplication(Bt, T);
 
     view.Display(); // Just to log
+}
+
+void ViewPlaneDistance(double distance)
+{
+    d = distance;
+    projection.SetValue(2, 3, d);
+    projection.SetValue(3, 2, (-1) / d);
+    projection.SetValue(3, 3, 0);
+
+    projection.Display(); // Just to log
+}
+
+void ViewPort(int initial_x, int initial_y, int width, int height)
+{
+    Matrix S1(4, 4);
+    Matrix S2(4, 4);
+    Matrix T(4, 4);
+
+    S1.LoadIdentityMatrix();
+    S2.LoadIdentityMatrix();
+    T.LoadIdentityMatrix();
+
+    S1.SetValue(1, 1, -1);
+
+    S2.SetValue(0, 0, (width - 1) / 2.0f);
+    S2.SetValue(1, 1, (height - 1) / 2.0f);
+
+    T.SetValue(0, 3, 1);
+    T.SetValue(1, 3, 1);
+
+    viewport.LoadIdentityMatrix();
+
+    viewport.MatrixMultiplication(T, S1);
+    viewport.MatrixMultiplication(S2, viewport);
+
+    viewport.Display(); // Just to log
+}
+
+void PipelineLoader()
+{
+    model.LoadIdentityMatrix();
+    view.LoadIdentityMatrix();
+    projection.LoadIdentityMatrix();
+    viewport.LoadIdentityMatrix();
+    ViewPlaneDistance(1);
 }
 
 #endif // _GRAPHIC_PIPELINE_H_
