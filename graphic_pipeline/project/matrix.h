@@ -2,7 +2,6 @@
 #define _MATRIX_H_
 
 #include <iostream>
-#include <string>
 #include <vector>
 #include <stdexcept>
 using namespace std;
@@ -15,6 +14,7 @@ class Matrix
         int columns;
 
     public:
+        Matrix();
         Matrix(int num_rows, int num_columns);
         ~Matrix();
 
@@ -33,6 +33,17 @@ class Matrix
         void Display();
 };
 
+Matrix::Matrix()
+{
+    rows = 3;
+    columns =  3;
+    matrix = new double * [rows];
+
+    for (int i = 0; i < rows; ++i)
+    {
+        matrix[i] = new double[columns];
+    }
+}
 
 Matrix::Matrix(int num_rows, int num_columns)
 {
