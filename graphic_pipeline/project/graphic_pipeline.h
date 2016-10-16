@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include "matrix.h"
-using namespace std;
 
 typedef Matrix Vector;
 
@@ -100,6 +99,13 @@ void Rotation(double x_axis, double y_axis, double z_axis, double angle)
     model.Display(); // Just to log
 }
 
+double CrossProduct(Vector * v1, Vector * v2, Vector * product)
+{
+    (*product).SetValue(0, 0, (*v1).GetValue(1,0) * (*v2).GetValue(2, 0) - (*v2).GetValue(1, 0) * (*v1).GetValue(2,0));
+    (*product).SetValue(1, 0, (*v1).GetValue(2,0) * (*v2).GetValue(0, 0) - (*v2).GetValue(2, 0) * (*v1).GetValue(0,0));
+    (*product).SetValue(2, 0, (*v1).GetValue(0,0) * (*v2).GetValue(1, 0) - (*v2).GetValue(0, 0) * (*v1).GetValue(1,0));
+}
+
 double VectorNorm(Vector * vector)
 {
     return sqrt (
@@ -107,6 +113,52 @@ double VectorNorm(Vector * vector)
             (*vector).GetValue(1, 0) * (*vector).GetValue(1, 0) +
             (*vector).GetValue(2, 0) * (*vector).GetValue(2, 0)
     );
+}
+
+void ViewMatrix(vector<double> cam_position, vector<double> look_at, vector<double> up)
+{
+    Vector x_cam(3, 1);
+    Vector y_cam(3, 1);
+    Vector z_cam(3, 1);
+
+    Matrix Bt(4, 4);
+    Matrix T(4, 4);
+
+    Vector Looked(3, 1);
+    Vector Up(3, 1);
+
+    Looked.SetMatrix({cam_position[0] - look_at[0], cam_position[1] - look_at[1], cam_position[2] - look_at[2]});
+    Up.SetMatrix(up);
+
+    z_cam.DivisionByScalar(Looked, VectorNorm(&Looked));
+
+    CrossProduct(&Up, &z_cam, &Looked);
+
+    x_cam.DivisionByScalar(Looked, VectorNorm(&Looked));
+
+    CrossProduct(&z_cam, &x_cam, &Looked);
+
+    y_cam.DivisionByScalar(Looked, VectorNorm(&Looked));
+
+    vector<double> Bt_values {
+            x_cam.GetValue(0, 0), x_cam.GetValue(1, 0), x_cam.GetValue(2, 0), 0,
+            y_cam.GetValue(0, 0), y_cam.GetValue(1, 0), y_cam.GetValue(2, 0), 0,
+            z_cam.GetValue(0, 0), z_cam.GetValue(1, 0), z_cam.GetValue(2, 0), 0,
+            0,                    0,                    0,            1
+    };
+
+    Bt.SetMatrix(Bt_values);
+
+    T.LoadIdentityMatrix();
+    T.SetValue(0, 3, -cam_position[0]);
+    T.SetValue(1, 3, -cam_position[1]);
+    T.SetValue(2, 3, -cam_position[2]);
+
+    view.LoadIdentityMatrix();
+
+    view.MatrixMultiplication(Bt, T);
+
+    view.Display(); // Just to log
 }
 
 #endif // _GRAPHIC_PIPELINE_H_
