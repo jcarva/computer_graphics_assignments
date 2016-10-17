@@ -22,7 +22,7 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 
 ## Implementação
 
-A implementação deste Pipeline Gráficose dá por meio de quatro componentes principais que são listados abaixo.
+A implementação deste Pipeline Gráfico se dá por meio de quatro componentes principais que são listados abaixo.
 
 * Simulador de acesso a memória de video e [rasterizador de primitivas](https://github.com/jcarva/computer_graphics_assignments/tree/master/rasterization) desenvolvido na primeira avaliação prática da disciplina.
 
@@ -30,11 +30,11 @@ A implementação deste Pipeline Gráficose dá por meio de quatro componentes p
 
 * Classe que dá suporte a criação e operações com matrizes
 
-* Funções de transformações geometricas e operações contidas em um pipeline gráfico.
+* Header que contem funções de transformações geometricas e operações contidas em um pipeline gráfico.
 
-### [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+### Matrix
 
-As operações básicas necessarias com matrizes para a construção de um pipeline gráfico foram implementadas por meio da classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h), assim como a construção e representação de matrizes e vetores. Abaixo estão listados e descritos os metodos e operações estão implementados na classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h) e suas implementações verificadas no [link](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h).
+As operações básicas necessarias com matrizes para a construção de um pipeline gráfico foram implementadas por meio da classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h), assim como a construção e representação de matrizes e vetores. Abaixo estão listados e descritos os metodos e operações implementadas na classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h) e suas implementações verificadas no [link](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h).
 
 #### [Matrix()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
 
@@ -58,7 +58,7 @@ As operações básicas necessarias com matrizes para a construção de um pipel
 
 #### [void Display()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
 
-### [Graphic Pipeline](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
+### Graphic Pipeline
 
 As transformações geometricas e operações para o funcionamento de um pipeline gráfico foram implementados no header [graphic_pipeline.h](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h). Abaixo estão listadas e descritas(quando necessario) as funções contidas no header [graphic_pipeline.h](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) e suas implementações verificadas no [link]((https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)).
 
@@ -72,7 +72,7 @@ As transformações geometricas e operações para o funcionamento de um pipelin
 
 #### [double VectorNorm(Vector * vector)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
 
-#### [void LookAt(vector\<double> cam_position, vector\<double> look_at, vector<double> up)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
+#### [void LookAt(vector\<double> cam_position, vector\<double> look_at, vector\<double> up)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
 
 #### [void ViewPlaneDistance(double z_distance)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
 
@@ -82,4 +82,50 @@ As transformações geometricas e operações para o funcionamento de um pipelin
 
 #### [Pixel Pipeline(double x, double y, double z)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
 
-### [Main e Renderização](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+### Main e Renderização
+
+#### Setup
+
+##### Experimento 1
+
+##### Experimento 2
+
+##### Experimento 3
+
+##### Experimento 4
+
+##### Experimento 5
+
+---
+
+## Dificuldades
+
+* Encontrar a melhor maneira para a generalização do algoritimo de rasterização foi a parte mais árdua de todo o projeto, levando a maior parte do tempo de desenvolvimento.
+
+---
+
+## Possiveis trabalhos futuros
+
+* Assim como o atributo ```buffer_line``` nos objetos da classe ```Line```,  o incremento de cor para o próximo ponto na interpolação de cores também poderia se tornar variavel de instancia da classe. Assim evitando calcular novamente quando feito o preenchimento de triângulos.
+
+---
+
+## Conclusão
+
+Com este trabalho pude entender bem o funcionamento de uma rasterização, fixando os conceitos iniciais de computação gráfica de uma maneira pratica. Estudar uma melhor de maneira de implementar o algoritmo me trouxe uma visão mais ampla sobre como eu posso manipular objetos em espaços gráficos.
+
+---
+
+## Referências
+
+* [Bjarne Stroustrup's C++ Style and Technique FAQ](http://www.stroustrup.com/bs_faq2.html)
+
+* [Bresenham's line algorithm - Wikipedia](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+
+* [Matrizes de Reflexão](http://wiki.ued.ipleiria.pt/wikiEngenharia/index.php/Matriz_de_reflex%C3%A3o)
+
+* Notas de Aula do Prof. Christian Pagot
+
+* [Shapari - Reflexão em torno da reta y = x](http://www.ufrgs.br/espmat/disciplinas/tutoriais_softwares/shapari/shapari_rfxy.htm)
+
+* [The Bresenham Line-Drawing Algorithm - Department of Computer Science, University of Helsinki](https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html)
