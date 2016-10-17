@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include "matrix.h"
+#include "pixel.h"
 
 typedef Matrix Vector;
 
@@ -10,8 +11,6 @@ Matrix model(4, 4);
 Matrix view(4, 4);
 Matrix projection(4, 4);
 Matrix viewport(4, 4);
-
-double d;
 
 void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)
 {
@@ -142,11 +141,10 @@ void LookAt(vector<double> cam_position, vector<double> look_at, vector<double> 
     view.Display(); // Just to log
 }
 
-void ViewPlaneDistance(double distance)
+void ViewPlaneDistance(double z_distance)
 {
-    d = distance;
-    projection.SetValue(2, 3, d);
-    projection.SetValue(3, 2, (-1) / d);
+    projection.SetValue(2, 3, z_distance);
+    projection.SetValue(3, 2, (-1) / z_distance);
     projection.SetValue(3, 3, 0);
 
     projection.Display(); // Just to log
@@ -185,6 +183,25 @@ void PipelineLoader()
     projection.LoadIdentityMatrix();
     viewport.LoadIdentityMatrix();
     ViewPlaneDistance(1);
+}
+
+Pixel Pipeline(double x, double y, double z)
+{
+    vector<double> Vertex_values{x, y, z, 1};
+
+    Matrix Vertex(4, 1);
+
+    Vertex.SetMatrix(Vertex_values);
+
+    Vertex.MatrixMultiplication(model, Vertex);
+    Vertex.MatrixMultiplication(view, Vertex);
+    Vertex.MatrixMultiplication(projection, Vertex);
+    Vertex.DivisionByScalar(Vertex, Vertex.GetValue(3, 0));
+    Vertex.MatrixMultiplication(viewport, Vertex);
+
+    Pixel reference_pixel = Pixel(round(Vertex.GetValue(0, 0)), round(Vertex.GetValue(1, 0)));
+
+    return reference_pixel;
 }
 
 #endif // _GRAPHIC_PIPELINE_H_
