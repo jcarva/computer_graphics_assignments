@@ -37,26 +37,48 @@ A implementação deste Pipeline Gráfico se dá por meio de quatro componentes 
 As operações básicas necessarias com matrizes para a construção de um pipeline gráfico foram implementadas por meio da classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h), assim como a construção e representação de matrizes e vetores. Abaixo estão listados e descritos os metodos e operações implementadas na classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h) e suas implementações verificadas no [link](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h).
 
 #### [Matrix()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
-
+Construtor padrão que inicializa uma matriz quadratica de dimensões 3x3.
+ 
+ 
 #### [Matrix(int num_rows, int num_columns)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Contrutor que recebe como argumentos as dimensões da matriz que será criada.
+
 
 #### [~Matrix()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Destrutor que desaloca memoria de uma matriz previamente criada.
+
 
 #### [void SetMatrix(vector\<double> values)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que recebe como argumento um conjunto de valores e os atribui para a matriz.
+
 
 #### [vector\<int> GetDimensions()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que retorna um conjunto de valores com as dimensões da matriz.
+
 
 #### [void SetValue(int row, int column, double value)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que recebe como argumentos uma posição especifica na matriz e o valor que será atribuido a tal posição.
+
 
 #### [double GetValue(int row, int column)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que recebe como argumentos uma posição especifica na matriz e retorna o valor que está atribuido a tal posição.
+
 
 #### [void LoadIdentityMatrix()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que converte a matriz em uma matriz identidade. 
+
 
 #### [void MatrixMultiplication(Matrix& m1, Matrix& m2)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que recebe como argumentos duas referências de matrizes, realiza a operação de multiplicação de matrizes e atribui o resultado a matriz previamente criada.
+
 
 #### [void DivisionByScalar(Matrix& m, double scalar)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que recebe como argumento uma referência de matriz e um escalar, realiza a operação de divisão em todos os elementos da matriz usando o argumento escalar como divisor, e atribui o resultado a matriz previamente criada.
+
 
 #### [void Display()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
+Método que exibe os correntes valores da matriz.
+
 
 ### Graphic Pipeline
 
