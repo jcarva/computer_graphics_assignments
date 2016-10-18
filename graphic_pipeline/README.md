@@ -101,7 +101,11 @@ typedef Matrix Vector;
 ```
 
 
+
+
 Na primeira etapa do pipeline gráfico as transformações são aplicadas somente na matriz Model. Tais tranformações são acumulativas, podem ser agredadas em uma única matriz e verificadas a seguir.  
+
+
 
 
 #### [void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -125,6 +129,8 @@ void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)
 ```
 
 
+
+
 #### [void Translation(double x_displacement, double y_displacement, double z_displacement)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
 Transformação geometrica de translação que modifica a matriz model.
 ``` c++
@@ -144,6 +150,8 @@ void Translation(double x_displacement, double y_displacement, double z_displace
 
 }
 ```
+
+
 
 
 #### [void Rotation(double x_axis, double y_axis, double z_axis, double angle)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -186,7 +194,11 @@ void Rotation(double x_axis, double y_axis, double z_axis, double angle)
 ```
 
 
+
+
 Na segunda etapa do pipeline gráfico as operações são aplicadas na matriz View. 
+
+
 
 
 #### [void LookAt(vector\<double> cam_position, vector\<double> look_at, vector\<double> up)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -240,7 +252,11 @@ void LookAt(vector<double> cam_position, vector<double> look_at, vector<double> 
 ```
 
 
+
+
 Na terceira etapa do pipeline gráfico as operações são aplicadas na matriz Projection. 
+
+
 
 
 #### [void ViewPlaneDistance(double z_distance)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -257,7 +273,11 @@ void ViewPlaneDistance(double z_distance)
 ```
 
 
+
+
 Na quarta etapa do pipeline gráfico as operações são aplicadas na matriz Viewport. 
+
+
 
 
 #### [void ViewPort(int initial_x, int initial_y, int width, int height)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -291,7 +311,11 @@ void ViewPort(int initial_x, int initial_y, int width, int height)
 ```
 
 
+
+
 Sabendo que a implementação do pipeline gráfico segue o padrão do OpenGL, ou seja, se comporta como uma maquina de estados, é necessario a existencia de um estado inicial.
+
+
 
 
 #### [void PipelineLoader()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -307,7 +331,12 @@ void PipelineLoader()
 }
 ```
 
+
+
+
 Calculos de produtos vetoriais e norma de vetores são necessarios em um pipeline gráfico.
+
+
 
 
 #### [double CrossProduct(Vector * v1, Vector * v2, Vector * product)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -320,6 +349,8 @@ double CrossProduct(Vector * v1, Vector * v2, Vector * product)
     (*product).SetValue(2, 0, (*v1).GetValue(0,0) * (*v2).GetValue(1, 0) - (*v2).GetValue(0, 0) * (*v1).GetValue(1,0));
 }
 ```
+
+
 
 
 #### [double VectorNorm(Vector * vector)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
@@ -336,7 +367,11 @@ double VectorNorm(Vector * vector)
 ```
 
 
+
+
 Posteriormente a implementação e configuração de funções necessárias em um pipeline gráfico, resta agregarmos as mesmas em uma única função que é o Pipeline Gráfico propriamente dito.
+
+
 
 
 #### [Pixel Pipeline(double x, double y, double z)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
