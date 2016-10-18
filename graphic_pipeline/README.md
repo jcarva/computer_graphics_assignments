@@ -94,22 +94,16 @@ Matrix viewport(4, 4);
 ```
 
 
-#### Vector
-O tipo vetor que é utilizado em algumas etapas do pipelipe gráfico é criado com o construtor padrão da classe Matrix, ou seja, possui dimensões 3x3.
+#### Vector - O tipo vetor que é utilizado em algumas etapas do pipelipe gráfico é criado com o construtor padrão da classe Matrix, ou seja, possui dimensões 3x3.
 ``` c++
 typedef Matrix Vector;
 ```
 
 
-
-
 Na primeira etapa do pipeline gráfico as transformações são aplicadas somente na matriz Model. Tais tranformações são acumulativas, podem ser agredadas em uma única matriz e verificadas a seguir.  
 
 
-
-
-#### [void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Transformação geometrica de escala que modifica a matriz model.
+#### [void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Transformação geometrica de escala que modifica a matriz model.
 ``` c++
 void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)
 {
@@ -129,10 +123,7 @@ void Scale(double x_scale_factor, double y_scale_factor, double z_scale_factor)
 ```
 
 
-
-
-#### [void Translation(double x_displacement, double y_displacement, double z_displacement)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Transformação geometrica de translação que modifica a matriz model.
+#### [void Translation(double x_displacement, double y_displacement, double z_displacement)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Transformação geometrica de translação que modifica a matriz model.
 ``` c++
 void Translation(double x_displacement, double y_displacement, double z_displacement)
 {
@@ -152,10 +143,7 @@ void Translation(double x_displacement, double y_displacement, double z_displace
 ```
 
 
-
-
-#### [void Rotation(double x_axis, double y_axis, double z_axis, double angle)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Transformação geometrica de rotação que modifica a matriz model.
+#### [void Rotation(double x_axis, double y_axis, double z_axis, double angle)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Transformação geometrica de rotação que modifica a matriz model.
 ``` c++
 void Rotation(double x_axis, double y_axis, double z_axis, double angle)
 {
@@ -194,15 +182,10 @@ void Rotation(double x_axis, double y_axis, double z_axis, double angle)
 ```
 
 
-
-
 Na segunda etapa do pipeline gráfico as operações são aplicadas na matriz View. 
 
 
-
-
-#### [void LookAt(vector\<double> cam_position, vector\<double> look_at, vector\<double> up)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Função de definição da camera e construção da matrix View a partir dos dados câmera
+#### [void LookAt(vector\<double> cam_position, vector\<double> look_at, vector\<double> up)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de definição da camera e construção da matrix View a partir dos dados câmera
 ``` c++
 void LookAt(vector<double> cam_position, vector<double> look_at, vector<double> up)
 {
@@ -252,15 +235,10 @@ void LookAt(vector<double> cam_position, vector<double> look_at, vector<double> 
 ```
 
 
-
-
 Na terceira etapa do pipeline gráfico as operações são aplicadas na matriz Projection. 
 
 
-
-
-#### [void ViewPlaneDistance(double z_distance)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Função de contrução da matrix Projection a partir a definição da distancia ```Z``` até o view plane.
+#### [void ViewPlaneDistance(double z_distance)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de contrução da matrix Projection a partir a definição da distancia ```Z``` até o view plane.
 ``` c++
 void ViewPlaneDistance(double z_distance)
 {
@@ -273,15 +251,10 @@ void ViewPlaneDistance(double z_distance)
 ```
 
 
-
-
 Na quarta etapa do pipeline gráfico as operações são aplicadas na matriz Viewport. 
 
 
-
-
-#### [void ViewPort(int initial_x, int initial_y, int width, int height)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Função de contrução da matriz Viewport a partir das dimensões da janela de projeção.
+#### [void ViewPort(int initial_x, int initial_y, int width, int height)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de contrução da matriz Viewport a partir das dimensões da janela de projeção.
 ``` c++
 void ViewPort(int initial_x, int initial_y, int width, int height)
 {
@@ -311,15 +284,10 @@ void ViewPort(int initial_x, int initial_y, int width, int height)
 ```
 
 
-
-
 Sabendo que a implementação do pipeline gráfico segue o padrão do OpenGL, ou seja, se comporta como uma maquina de estados, é necessario a existencia de um estado inicial.
 
 
-
-
-#### [void PipelineLoader()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Função de carregamento de estado inicial do pipeline gráfico.
+#### [void PipelineLoader()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de carregamento de estado inicial do pipeline gráfico.
 ``` c++
 void PipelineLoader()
 {
@@ -332,15 +300,10 @@ void PipelineLoader()
 ```
 
 
-
-
 Calculos de produtos vetoriais e norma de vetores são necessarios em um pipeline gráfico.
 
 
-
-
-#### [double CrossProduct(Vector * v1, Vector * v2, Vector * product)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Função de calculo de produto vetorial que é utilizada em algumas etapas do pipelipe gráfico.
+#### [double CrossProduct(Vector * v1, Vector * v2, Vector * product)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de calculo de produto vetorial que é utilizada em algumas etapas do pipelipe gráfico.
 ``` c++
 double CrossProduct(Vector * v1, Vector * v2, Vector * product)
 {
@@ -351,10 +314,7 @@ double CrossProduct(Vector * v1, Vector * v2, Vector * product)
 ```
 
 
-
-
-#### [double VectorNorm(Vector * vector)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Função de calculo de modulo de vetor que é utilizada em algumas etapas do pipelipe gráfico.
+#### [double VectorNorm(Vector * vector)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de calculo de modulo de vetor que é utilizada em algumas etapas do pipelipe gráfico.
 ``` c++
 double VectorNorm(Vector * vector)
 {
@@ -367,15 +327,10 @@ double VectorNorm(Vector * vector)
 ```
 
 
-
-
 Posteriormente a implementação e configuração de funções necessárias em um pipeline gráfico, resta agregarmos as mesmas em uma única função que é o Pipeline Gráfico propriamente dito.
 
 
-
-
-#### [Pixel Pipeline(double x, double y, double z)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)
-Função que recebe como argumento um vertice, realiza todas as operações do pipeline gráfico no mesmo e retorna tal vertice transformado.
+#### [Pixel Pipeline(double x, double y, double z)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função que recebe como argumento um vertice, realiza todas as operações do pipeline gráfico no mesmo e retorna tal vertice transformado.
 ``` c++
 Pixel Pipeline(double x, double y, double z)
 {
@@ -416,19 +371,13 @@ Pixel Pipeline(double x, double y, double z)
 
 ## Dificuldades
 
-* Encontrar a melhor maneira para a generalização do algoritimo de rasterização foi a parte mais árdua de todo o projeto, levando a maior parte do tempo de desenvolvimento.
-
----
-
-## Possiveis trabalhos futuros
-
-* Assim como o atributo ```buffer_line``` nos objetos da classe ```Line```,  o incremento de cor para o próximo ponto na interpolação de cores também poderia se tornar variavel de instancia da classe. Assim evitando calcular novamente quando feito o preenchimento de triângulos.
+Devido ao montante de operações necessarias em um pipeline gráfico, a maior dificuldade foi na estruração e arquitetura reunindo todos os componentes para que não houvesse problemas em qualquer etapa do fluxo dos dados.
 
 ---
 
 ## Conclusão
 
-Com este trabalho pude entender bem o funcionamento de uma rasterização, fixando os conceitos iniciais de computação gráfica de uma maneira pratica. Estudar uma melhor de maneira de implementar o algoritmo me trouxe uma visão mais ampla sobre como eu posso manipular objetos em espaços gráficos.
+Este projeto me proporcionou um aprendizado de como é realizado o fluxo de dados para uma renderização de um modelo completo. Assim pude perceber o tamanho da complexidade que é produzir um pipeline otimizado.
 
 ---
 
@@ -436,12 +385,8 @@ Com este trabalho pude entender bem o funcionamento de uma rasterização, fixan
 
 * [Bjarne Stroustrup's C++ Style and Technique FAQ](http://www.stroustrup.com/bs_faq2.html)
 
-* [Bresenham's line algorithm - Wikipedia](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
-
-* [Matrizes de Reflexão](http://wiki.ued.ipleiria.pt/wikiEngenharia/index.php/Matriz_de_reflex%C3%A3o)
-
 * Notas de Aula do Prof. Christian Pagot
 
-* [Shapari - Reflexão em torno da reta y = x](http://www.ufrgs.br/espmat/disciplinas/tutoriais_softwares/shapari/shapari_rfxy.htm)
+* [OpenGL](https://www.opengl.org/)
 
-* [The Bresenham Line-Drawing Algorithm - Department of Computer Science, University of Helsinki](https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html)
+* [What is the “OpenGL State Machine”?](http://stackoverflow.com/questions/31282678/what-is-the-opengl-state-machine)
