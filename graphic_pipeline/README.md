@@ -353,9 +353,78 @@ Pixel Pipeline(double x, double y, double z)
 ```
 
 
-### Main e Renderização
+A função o Pipeline retorna um pixel. Onde o mesmo ponto juntamente com os demais formam uma das faces do objeto, que por sua vez será enviado para ser rasterizada na tela.
 
-#### Setup
+### Rasterização
+
+A rasterização do objeto na tela é realizada no arquivo [main.cpp](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/main.cpp). Onde podemos dividir tal etapa em algumas partes.
+
+#### 1. Inicialização do pipeline gráfico
+``` c++
+PipelineLoader();
+```
+
+#### 2. Configuração da câmera
+``` c++
+vector<double> cam_position{0.0f, 0.0f, 4.0f}; //camera position
+vector<double> look_at{0.0f, 0.0f, 0.0f}; //point looked by the camera
+vector<double> up{0.0f, 1.0f, 0.0f}; //up vector
+
+LookAt(cam_position, look_at, up);
+```
+
+#### 3. Construção da janela de projeção
+``` c++
+ViewPort(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
+```
+
+
+#### 4. Configuração da distancia ```Z``` até o view plane.
+``` c++
+ViewPlaneDistance(1.9);
+```
+
+#### 5. Aplicação de Rotação
+``` c++
+Rotation(0.0f, 1.0f, 0.0f, angle);
+angle += 0.009f;
+```
+
+#### 6. Reset no frame buffer
+``` c++
+CleanScreen(0, 0, 0, 255);
+```
+
+#### 7. Leitura do objeto, envio para pipeline gráfico e construção do objeto na tela
+``` c++
+vector<Pixel> pixel;
+pixel.resize(3);
+
+for(int f = 0; f < objData->faceCount; f++)
+{
+    obj_face* obj = objData->faceList[f];
+
+    for(int i = 0; i < 3; i++)
+    {
+        Pixel p = Pipeline(
+                objData->vertexList[obj->vertex_index[i]]->e[0],
+                objData->vertexList[obj->vertex_index[i]]->e[1],
+                objData->vertexList[obj->vertex_index[i]]->e[2]
+        );
+
+        pixel[i].column = p.column;
+        pixel[i].row = p.row;
+    }
+
+    int red[4] = { 255, 0, 0, 255 };
+    int green[4] = { 0, 255, 0, 255 };
+    int blue[4] = { 0, 0, 255, 255 };
+
+    Triangle().DrawTriangle(pixel[0], pixel[1], pixel[2], red, green, blue);
+}
+```
+
+### Resultados
 
 ##### Experimento 1
 
