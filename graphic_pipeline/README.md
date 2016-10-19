@@ -416,25 +416,48 @@ for(int f = 0; f < objData->faceCount; f++)
         pixel[i].row = p.row;
     }
 
-    int red[4] = { 255, 0, 0, 255 };
-    int green[4] = { 0, 255, 0, 255 };
-    int blue[4] = { 0, 0, 255, 255 };
-
-    Triangle().DrawTriangle(pixel[0], pixel[1], pixel[2], red, green, blue);
+        int white[4] = { 255, 255, 255, 255 };
+		Triangle().DrawTriangle(pixel[0], pixel[1], pixel[2], white, white, white);
 }
 ```
 
 ### Resultados
 
-##### Experimento 1
+<p align="center">
+  <img src ="./images/obj_loader1.png"/>
+  <h5 align="center">Figura 9</h5>
+</p>
 
-##### Experimento 2
+#### Experimento 1
 
-##### Experimento 3
 
-##### Experimento 4
+<p align="center">
+  <img src ="./images/pipeline1.png"/>
+  <h5 align="center">Figura 9</h5>
+</p>
 
-##### Experimento 5
+#### Experimento 2
+
+<p align="center">
+  <img src ="./images/pipeline3.gif" style="width: 80%"/>
+  <h5 align="center">Figura 9</h5>
+</p>
+
+#### Experimento 3
+
+<p align="center">
+  <img src ="./images/pipeline2.png"/>
+  <h5 align="center">Figura 9</h5>
+</p>
+
+#### Experimento 4
+
+<p align="center">
+  <img src ="./images/pipeline4.gif" style="width: 80%"/>
+  <h5 align="center">Figura 9</h5>
+</p>
+
+#### Experimento 5
 
 ---
 
@@ -446,7 +469,7 @@ Devido ao montante de operações necessarias em um pipeline gráfico, a maior d
 
 ## Conclusão
 
-Este projeto me proporcionou um aprendizado de como é realizado o fluxo de dados para uma renderização de um modelo completo. Assim pude perceber o tamanho da complexidade que é produzir um pipeline otimizado.
+Este projeto me proporcionou um aprendizado de como é realizado o fluxo de dados para uma renderização de um modelo completo. Assim pude perceber o tamanho da complexidade que é produzir um pipeline e renderizações otimizadas.
 
 ---
 
