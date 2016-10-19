@@ -48,7 +48,7 @@ Um [pipeline gráfico](https://en.wikipedia.org/wiki/Graphics_pipeline) pode ser
     <div style="margin: 40px;">
         <p align="center">
             <img src ="./images/full_pipeline.png" style="width: 90%;"/>
-            <h5 align="center">Figura 1</h5>
+            <h5 align="center">Figura 1 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
 </a>
@@ -58,10 +58,117 @@ Agora que já sabemos como é divido um pipeline gráfico, o passo seguinte é s
 ---
 
 ## Model
+A transformação Model é responsavel por transportar os pontos do objeto do **espaço do objeto** para o **espaço do universo**, onde o espaço do objeto é o espaço constituido pela forma original/inicial dos pontos e sistema de coordenadas do objeto. Já o espaço do universo é onde cada objeto tem sua posição no espaço. A **Figura 2** ilustra a transformação.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/model.png" style="width: 90%;"/>
+            <h5 align="center">Figura 2 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+O transporte do objeto entre os dois espaços supracitados é feito por meio de [transformações geometricas](https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html) aplicadas nos vértices do modelo do objeto. Todas as transformações(escala, rotação e translação) utilizadas são representadas por matrizes distintas. Tais tranformações são acumulativas e podem ser agredadas em uma única matriz, as mesmas são descritas a seguir.
+
+#### Escala
+
+Essa transformação é utilizada para modificar o tamanho do objeto em que é aplicada, tendo a capacidade de aumentar, diminuir ou se manter neutra(apenas transporta o objeto para o espaço do universo). A **Figura 3** ilustra como é representada tal transformação.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/scale.png" style="width: 80%;"/>
+            <h5 align="center">Figura 3 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+#### Translação
+
+A aplicação dessa transformação é necessaria quando se deseja mudar a posição de um objeto. A representação da transformação pode ser visualizada na **Figura 4**.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/translation.png" style="width: 80%;"/>
+            <h5 align="center">Figura 4 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+#### Rotação
+
+Tal transformação rotaciona o objeto em torno de um ou mais eixos do sistema de coordenadas. As matrizes da **Figura 5** ilustram como são representadas as possiveis rotações em um objeto.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/rotation.png" style="width: 100%;"/>
+            <h5 align="center">Figura 5 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
 
 ---
 
 ## View
+
+Estando no espaço do universo por meio da transformação de todos os vertices pela Model, a próxima etapa é seguir com a tranformação View, e para isso é necessario a construção de uma matriz, tal matriz realiza o transporte do **espaço do universo** para o **espaço da camera**. A **Figura 6** ilustra a transformação e define os parametros necessarios para a construção do sistema de cordenadas da camera e da matriz de transformação.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/view.png" style="width: 90%;"/>
+            <h5 align="center">Figura 6 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+Sabendo que os parâmetros definidos da camêra não representam o seu sistema de coordenadas, precisamos definir tal sistema a partir dos dados recebidos.
+
+#### Contrução do Sistema de Coordenadas da Câmera
+
+A construção do sistema de cordenadas da câmera é realizada por calculos de produtos vetoriais e normas de vetores. Os dados iniciais para tais calculos são os parametros que definem a câmera, os quais estão definidos na **Figura 6** e listados abaixo.
+
+* Ponto EYE(ex, ey, ez) que define a posição da câmera no espaço do universo.
+* Ponto AT(ax, ay, az) que define a direção no qual a câmera esta olhando.
+* Vetor UP(ux, uy, uz) que denota a orientação para cima da câmera.
+
+O primeiro passo é criar um vetor unitário que irá representar o eixo Z do sistema de coordenadas da câmera. Tal eixo é determinado pelo calculo do vetor que é criado a partir de dois pontos previamnete definidos, o ponto onde a câmera está direcionada e o ponto para onde a câmera está olhando, divido pela sua propria norma. A **Figura 7** represeta o caculo do eixo Z sistema de coordenadas da câmera.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/z_cam_coordinate.png" style="width: 30%;"/>
+            <h5 align="center">Figura 7 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+Com o eixo Z já definido, o passo seguinte é determinar o vetor que irá representar o eixo X. Através do calculo do produto vetorial definimos o eixo X, e os vetores utilizados no calculo é o vetor Zc que determina o eixo Z, e o vetor UP. Logo a operação restante para a obtenção do eixo X, é dividir o vetor resultante pela sua norma. A **Figura 8** ilustra o calculo realizado.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/x_cam_coordinate.png" style="width: 30%;"/>
+            <h5 align="center">Figura 8 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+O passo restante é encontrar o vetor que representará o eixo Y, para isso aplicaremos o mesmo calculo utilizado para encontrar o vetor que server de base para o eixo X, porém agora calcularemos com o vetor Zc e Xc. Essa operação está ilustrada na **Figura 9**.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/y_cam_coordinate.png" style="width: 25%;"/>
+            <h5 align="center">Figura 9 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+#### Construção da matriz View
 
 ---
 
