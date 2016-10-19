@@ -22,7 +22,7 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 
 O objetivo final deste trabalho é a construção de um pipeline gráfico completo, realizando a implementação e explicação de todas as transformações contidas no mesmo.
 
-Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda PinkFloyd, mais especificamente ao som de [Echos](https://www.youtube.com/watch?v=jzeNFjsrb1Q), música do album Meddle de 1971.
+Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda Pink Floyd, mais especificamente ao som de [Echos](https://www.youtube.com/watch?v=jzeNFjsrb1Q), música do album Meddle de 1971.
 
 <a href="https://www.youtube.com/watch?v=jzeNFjsrb1Q">
     <div style="margin: 40px;">
@@ -181,7 +181,7 @@ Com a base ortonormal da câmera definida(Xc, Yc e Zc) no passo anterior, temos 
     </div>
 </a>
 
-A operação restante concluir a transformação View é a translação, movendo EYE para a origem. Esta operação é representada por uma matriz e pode ser visualizada na **Figura 11**.
+A operação restante para concluir a transformação View é a translação, movendo EYE para a origem. Esta operação é representada por uma matriz e pode ser visualizada na **Figura 11**.
 
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
@@ -206,6 +206,42 @@ Podemos ainda combinar a matriz de rotação transposta com a matriz de transla�
 ---
 
 ## Projection
+Uma vez estando no espaço da câmera, a transformação aplicada em todos os vertices do objeto é a Projection, transportando os pontos do ***espaço da câmera*** para o ***espaço de recorte***. Também vale ressaltar que é no espaço atual que é definido o que é visto ou não pela câmera. Ilustrado pela **Figura 13**.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/projection.jpg" style="width: 80%;"/>
+            <h5 align="center">Figura 13</h5>
+        </p>
+    </div>
+</a>
+
+Ainda há uma importante operação adicional que é aplicada, a distorção perspectiva sobre o espaço que a câmera pode capturar. Tal operação faz com que os objetos mais proximos do view plane pareçam maiores e os mais distantes pareçam menores. Operação representadda pela **Figura 14**.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/perspective_projection.png" style="width: 50%;"/>
+            <h5 align="center">Figura 14</h5>
+        </p>
+    </div>
+</a>
+
+A estrutura encarregada de realizar a transformação de distorção é a matriz Projection, que realiza tal tarefa por meio da coordenada homogenea e da distancia ```d``` do até o view plane. A matriz Projection é ilustrada pela ***Figura 15***.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/matrix_projection.png" style="width: 40%;"/>
+            <h5 align="center">Figura 15</h5>
+        </p>
+    </div>
+</a>
+
+---
+
+## Homogeneização
 
 ---
 
@@ -431,7 +467,7 @@ void LookAt(vector<double> cam_position, vector<double> look_at, vector<double> 
 Na terceira etapa do pipeline gráfico as operações são aplicadas na matriz Projection. 
 
 
-#### [void ViewPlaneDistance(double z_distance)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de contrução da matrix Projection a partir a definição da distancia ```Z``` até o view plane.
+#### [void ViewPlaneDistance(double z_distance)](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) - Função de contrução da matrix Projection a partir a definição da distancia em ```Z``` até o view plane.
 ``` c++
 void ViewPlaneDistance(double z_distance)
 {
@@ -572,7 +608,7 @@ ViewPort(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
 ```
 
 
-#### 4. Configuração da distancia ```Z``` até o view plane.
+#### 4. Configuração da distancia em ```Z``` até o view plane.
 ``` c++
 ViewPlaneDistance(1.9);
 ```
