@@ -18,9 +18,45 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 
 ---
 
-<iframe align="middle"
-    src="https://www.youtube.com/watch?v=jzeNFjsrb1Q">
-</iframe>
+## Introdução
+
+O objetivo final deste trabalho é a construção de um pipeline gráfico completo, realizando a implementação e explicação de todas as transformações contidas no mesmo.
+
+Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda PinkFloyd, mais especificamente ao som de [Echos](https://www.youtube.com/watch?v=jzeNFjsrb1Q), música do album Meddle de 1971.
+
+<div style="margin: 40px;">
+    <p align="center">Meddle - Echoes</p>
+    [<p align="center">
+      <img src ="./images/meddle.jpg"/>
+    </p>](https://www.youtube.com/watch?v=jzeNFjsrb1Q)
+</div>
+
+Um [pipeline gráfico](https://en.wikipedia.org/wiki/Graphics_pipeline) pode ser definido como um conjunto de etapas e/ou transformações usado para a criação de uma cena rasterizada, ou seja, conduzir os pontos do espaço do objeto até o espaço da tela. Para a existência do fluxo em um pipeline gráfico, os pontos da cena precisam ser aplicados a transformações e matrizes, que transformam e levam os pontos para etapas seguintes. A **Figura 1** ilustra como está divido o pipeline gráfico.
+ 
+<div style="margin: 40px;">
+    [<p align="center">
+        <img src ="./images/full_pipeline.png" style="width: 90%;"/>
+        <h5 align="center">Figura 1</h5>
+    </p>](https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html)
+</div>
+
+Agora que já sabemos como é divido um pipeline gráfico, o passo seguinte e saber como funciona e qual a função de cada etapa.
+
+---
+
+## Model
+
+---
+
+## View
+
+---
+
+## Projection
+
+---
+
+## Viewport
 
 ---
 
@@ -448,11 +484,10 @@ for(int f = 0; f < objData->faceCount; f++)
 </p>
 
 #### Experimento 3
-
-<p align="center">
+[<p align="center">
   <img src ="./images/pipeline2.png"/>
   <h5 align="center">Figura 9</h5>
-</p>
+</p>](http://damien.pobel.fr/post/youtube-video-github/)
 
 #### Experimento 4
 
@@ -478,6 +513,8 @@ Este projeto me proporcionou um aprendizado de como é realizado o fluxo de dado
 ---
 
 ## Referências
+
+* [3D Graphics with OpenGL - Basic Theory](https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html)
 
 * [Bjarne Stroustrup's C++ Style and Technique FAQ](http://www.stroustrup.com/bs_faq2.html)
 
