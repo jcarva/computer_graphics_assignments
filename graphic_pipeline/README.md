@@ -2,8 +2,6 @@
 
 ---
 
-## Introdução
-
 Esta postagem é parte obrigatoria da segunda avaliação prática da disciplina de Introdução à Computação Gráfica, ministrada pelo Prof. Christian Pagot no semestre letivo 2016.1.
 
 As definições e especificações projeto podem ser acessadas através deste [link](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project_definition.pdf).
@@ -17,6 +15,12 @@ Caso o código ou a corrente postagem seja de alguma ajuda peço para que contri
 
 **Tem alguma questão ou sugestão?**																												
 Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
+
+---
+
+<iframe align="middle"
+    src="https://www.youtube.com/watch?v=jzeNFjsrb1Q">
+</iframe>
 
 ---
 

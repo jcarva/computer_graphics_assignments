@@ -16,7 +16,7 @@ void MyGlDraw(void)
 
 	PipelineLoader();
 
-	vector<double> cam_position{0.0f, 0.0f, 5.0f}; //camera position
+	vector<double> cam_position{0.0f, 0.0f, 4.0f}; //camera position
 	vector<double> look_at{0.0f, 0.0f, 0.0f}; //point looked by the camera
 	vector<double> up{0.0f, 1.0f, 0.0f}; //up vector
 
@@ -24,11 +24,12 @@ void MyGlDraw(void)
 
 	ViewPort(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
 
-	ViewPlaneDistance(2.5);
+	ViewPlaneDistance(1.9);
 
 	Rotation(0.0f, 1.0f, 0.0f, angle);
 
-	angle += 0.02f;
+	//angle += 0.009f;
+    angle += 0.000f;
 
 	CleanScreen(0, 0, 0, 255);
 
@@ -55,12 +56,18 @@ void MyGlDraw(void)
 //		int red[4] = { 0 + (rand() % (int)(255 - 0 + 1)), 0 + (rand() % (int)(255 - 0 + 1)), 0 + (rand() % (int)(255 - 0 + 1)), 255 };
 //		int green[4] = { 0 + (rand() % (int)(255 - 0 + 1)), 0 + (rand() % (int)(255 - 0 + 1)), 0 + (rand() % (int)(255 - 0 + 1)), 255 };
 //		int blue[4] = { 0 + (rand() % (int)(255 - 0 + 1)), 0 + (rand() % (int)(255 - 0 + 1)), 0 + (rand() % (int)(255 - 0 + 1)), 255 };
-//
+
 		int red[4] = { 255, 0, 0, 255 };
 		int green[4] = { 0, 255, 0, 255 };
 		int blue[4] = { 0, 0, 255, 255 };
+        int white[4] = { 255, 255, 255, 255 };
 
-		Triangle().DrawTriangle(pixel[0], pixel[1], pixel[2], red, green, blue);
+//		int red[4] = { 255, 255, 255, 255 };
+//		int green[4] = { 255, 255, 255, 255 };
+//		int blue[4] = { 255, 255, 255, 255 };
+
+		//Triangle().DrawTriangle(pixel[0], pixel[1], pixel[2], white, white, white);
+        Triangle().DrawTriangle(pixel[0], pixel[1], pixel[2], red, green, blue);
 	}
 }
 

@@ -66,7 +66,7 @@ void InitOpenGL(int *argc, char **argv)
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	glutInitWindowSize(IMAGE_WIDTH, IMAGE_HEIGHT);
 	glutInitWindowPosition(100,100);
-	glutCreateWindow("My OpenGL");
+	glutCreateWindow("Graphic Pipeline - Jaelson Carvalho - 11427671");
 
 	// Ajusta a projeção ortográfica.
 	glMatrixMode(GL_PROJECTION);
