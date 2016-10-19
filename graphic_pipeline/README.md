@@ -28,7 +28,7 @@ Para uma leitura e viagem completa através do desevolvimento do pipeline gráfi
     <div style="margin: 40px;">
         <p align="center">Meddle - Echoes</p>
         <p align="center">
-          <img src ="./images/meddle.jpg"/>
+          <img src="./images/meddle.jpg"/>
         </p>
     </div>
 </a>
@@ -47,7 +47,7 @@ Um [pipeline gráfico](https://en.wikipedia.org/wiki/Graphics_pipeline) pode ser
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/full_pipeline.png" style="width: 90%;"/>
+            <img src="./images/full_pipeline.png" style="width: 90%;"/>
             <h5 align="center">Figura 1 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -63,7 +63,7 @@ A transformação Model é responsavel por transportar os pontos do objeto do **
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/model.png" style="width: 90%;"/>
+            <img src="./images/model.png" style="width: 90%;"/>
             <h5 align="center">Figura 2 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -78,7 +78,7 @@ Essa transformação é utilizada para modificar o tamanho do objeto em que é a
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/scale.png" style="width: 80%;"/>
+            <img src="./images/scale.png" style="width: 80%;"/>
             <h5 align="center">Figura 3 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -91,7 +91,7 @@ A aplicação dessa transformação é necessaria quando se deseja mudar a posi�
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/translation.png" style="width: 80%;"/>
+            <img src="./images/translation.png" style="width: 80%;"/>
             <h5 align="center">Figura 4 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -104,7 +104,7 @@ Tal transformação rotaciona o objeto em torno de um ou mais eixos do sistema d
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/rotation.png" style="width: 100%;"/>
+            <img src="./images/rotation.png" style="width: 100%;"/>
             <h5 align="center">Figura 5 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -119,7 +119,7 @@ Estando no espaço do universo por meio da transformação de todos os vertices 
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/view.png" style="width: 90%;"/>
+            <img src="./images/view.png" style="width: 90%;"/>
             <h5 align="center">Figura 6 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -140,7 +140,7 @@ O primeiro passo é criar um vetor unitário que irá representar o eixo Z do si
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/z_cam_coordinate.png" style="width: 30%;"/>
+            <img src="./images/z_cam_coordinate.png" style="width: 30%;"/>
             <h5 align="center">Figura 7 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -151,7 +151,7 @@ Com o eixo Z já definido, o passo seguinte é determinar o vetor que irá repre
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/x_cam_coordinate.png" style="width: 30%;"/>
+            <img src="./images/x_cam_coordinate.png" style="width: 30%;"/>
             <h5 align="center">Figura 8 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -162,7 +162,7 @@ O passo restante é encontrar o vetor que representará o eixo Y, para isso apli
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/y_cam_coordinate.png" style="width: 25%;"/>
+            <img src="./images/y_cam_coordinate.png" style="width: 25%;"/>
             <h5 align="center">Figura 9 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -175,7 +175,7 @@ Com a base ortonormal da câmera definida(Xc, Yc e Zc) no passo anterior, temos 
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/view_matrix_rotation.png" style="width: 90%;"/>
+            <img src="./images/view_matrix_rotation.png" style="width: 90%;"/>
             <h5 align="center">Figura 10 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -186,18 +186,18 @@ A operação restante concluir a transformação View é a translação, movendo
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/view_matrix_translation.png" style="width: 55%;"/>
+            <img src="./images/view_matrix_translation.png" style="width: 55%;"/>
             <h5 align="center">Figura 11 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
 </a>
 
-Podemos ainda combinar a matriz de rotação transposta com a matriz de translação, definidas nos passos anteriores, assim contruindo uma única matriz View que pode ser visualizada na **Figura 12**
+Podemos ainda combinar a matriz de rotação transposta com a matriz de translação, definidas nos passos anteriores, assim contruindo uma única matriz View que pode ser visualizada na **Figura 12**.
 
 <a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
     <div style="margin: 40px;">
         <p align="center">
-            <img src ="./images/build_view_matrix.png" style="width: 100%;"/>
+            <img src="./images/build_view_matrix.png" style="width: 110%;"/>
             <h5 align="center">Figura 12 - (3D Graphics with OpenGL - Basic Theory)</h5>
         </p>
     </div>
@@ -227,7 +227,7 @@ A implementação deste Pipeline Gráfico se dá por meio de quatro componentes 
 
 ### Matrix
 
-As operações básicas necessarias com matrizes para a construção de um pipeline gráfico foram implementadas por meio da classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h), assim como a construção e representação de matrizes e vetores. Abaixo estão listados e descritos os metodos e operações implementadas na classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h) e suas implementações verificadas no [link](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h) ou em clickando cada método.
+As operações básicas necessarias com matrizes para a construção de um pipeline gráfico foram implementadas por meio da classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h), assim como a construção e representação de matrizes e vetores. Abaixo estão listados e descritos os metodos e operações implementadas na classe [Matrix](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h) e suas implementações verificadas no [link](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h) ou clickando em cada método.
 
 #### [Matrix()](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/matrix.h)
 Construtor padrão que inicializa uma matriz quadratica de dimensões 3x3.
@@ -275,7 +275,7 @@ Método que exibe os correntes valores da matriz.
 
 ### Graphic Pipeline
 
-As transformações geometricas e operações para o funcionamento de um pipeline gráfico foram implementados no header [graphic_pipeline.h](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h). Abaixo estão listadas e descritas(quando necessario) as funções contidas no header [graphic_pipeline.h](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) e suas implementações verificadas no [link]((https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)) ou em clickando cada função.
+As transformações geometricas e operações para o funcionamento de um pipeline gráfico foram implementados no header [graphic_pipeline.h](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h). Abaixo estão listadas e descritas(quando necessario) as funções contidas no header [graphic_pipeline.h](https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h) e suas implementações verificadas no [link]((https://github.com/jcarva/computer_graphics_assignments/blob/master/graphic_pipeline/project/graphic_pipeline.h)) ou clickando em cada função.
 
 #### [Máquina de Estados](http://stackoverflow.com/questions/31282678/what-is-the-opengl-state-machine)
 Seguindo o padrão do OpenGL(Open Graphics Library), a implementação deste pipeline gráfico será feita de forma que funcione como uma [máquina de estados](http://stackoverflow.com/questions/31282678/what-is-the-opengl-state-machine). Logo torna-se necessario a existencia de dados persistentes em tempo de execução. Esses dados são as matrizes Model, View, Projection e Viewport.
@@ -615,41 +615,64 @@ for(int f = 0; f < objData->faceCount; f++)
 ```
 
 ### Resultados
+Para a analise dos resultados, foi tomada como base para comparação a imagem gerada pelo OpenGL, mais especificamente, gerada pelo carregador de objetos disponilibilizado pelo Prof. Christian Pagot. Tal imagem poder ser vizualizada na **Figura X**
 
-<p align="center">
-  <img src ="./images/obj_loader1.png"/>
-  <h5 align="center">Figura 9</h5>
-</p>
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/obj_loader1.png"/>
+            <h5 align="center">Figura X</h5>
+        </p>
+    </div>
+</a>
 
 #### Experimento 1
+O intuito do primeiro experimento foi de se aproximar ao máximo da **Figura X**, ajustando a distancia do view plane e posição da camera para obter o melhor resultado possivel, que pode visualizado na **Figura X**.
 
-
-<p align="center">
-  <img src ="./images/pipeline1.png"/>
-  <h5 align="center">Figura 9</h5>
-</p>
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/pipeline1.png"/>
+            <h5 align="center">Figura X</h5>
+        </p>
+    </div>
+</a>
 
 #### Experimento 2
+Nesse experimento, os paramatros da função de rasterização foram alterados, assim proporcionando uma imagem com triângulos de cores interpoladas. Confira na **Figura X**
 
-<p align="center">
-  <img src ="./images/pipeline3.gif" style="width: 80%"/>
-  <h5 align="center">Figura 9</h5>
-</p>
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/pipeline2.png"/>
+            <h5 align="center">Figura X</h5>
+        </p>
+    </div>
+</a>
 
 #### Experimento 3
-[<p align="center">
-  <img src ="./images/pipeline2.png"/>
-  <h5 align="center">Figura 9</h5>
-</p>](http://damien.pobel.fr/post/youtube-video-github/)
+Causado por uma curiosidade fora do normal, esse experimento usa uma função de rasterização distinta das outras, o resultado é a rasterização de triangulos interpolados e preenchidos, como mostra a **Figura X**.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/pipeline3.png"/>
+            <h5 align="center">Figura X</h5>
+        </p>
+    </div>
+</a>
 
 #### Experimento 4
+Esse experimento é um video comparativo entre as renderizações geradas pelo carregador de objetos(utilizando OpenGL) e o pipeline grafico desenvolvido nesta atividade prática. Foram aplicadas rotações para a validação das tranformações e uma melhor visualização para comparação. Confira o resultado no **Video 1**.
 
-<p align="center">
-  <img src ="./images/pipeline4.gif" style="width: 80%"/>
-  <h5 align="center">Figura 9</h5>
-</p>
-
-#### Experimento 5
+<a href="https://youtu.be/ZQ-5UGr3DMk">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/video.png" style="width: 85%;"/>
+            <h5 align="center">Video 1</h5>
+        </p>
+    </div>
+</a>
 
 ---
 
@@ -661,7 +684,7 @@ Devido ao montante de operações necessarias em um pipeline gráfico, a maior d
 
 ## Conclusão
 
-Este projeto me proporcionou um aprendizado de como é realizado o fluxo de dados para uma renderização de um modelo completo. Assim pude perceber o tamanho da complexidade que é produzir um pipeline e renderizações otimizadas.
+Este projeto me proporcionou um aprendizado de como é realizado o fluxo de dados para uma renderização completa de um objeto. Assim pude perceber o tamanho da complexidade que é produzir um pipeline e renderizações otimizadas.
 
 ---
 
