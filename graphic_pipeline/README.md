@@ -24,23 +24,36 @@ O objetivo final deste trabalho é a construção de um pipeline gráfico comple
 
 Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda PinkFloyd, mais especificamente ao som de [Echos](https://www.youtube.com/watch?v=jzeNFjsrb1Q), música do album Meddle de 1971.
 
-<div style="margin: 40px;">
-    <p align="center">Meddle - Echoes</p>
-    [<p align="center">
-      <img src ="./images/meddle.jpg"/>
-    </p>](https://www.youtube.com/watch?v=jzeNFjsrb1Q)
-</div>
+<a href="https://www.youtube.com/watch?v=jzeNFjsrb1Q">
+    <div style="margin: 40px;">
+        <p align="center">Meddle - Echoes</p>
+        <p align="center">
+          <img src ="./images/meddle.jpg"/>
+        </p>
+    </div>
+</a>
+
+Antes de expor o que significa o pipeline gráfico propriamente dito, necessitamos enteder o conceito de espaço. Os espaços que aqui serão citados podemos entender por estados em que um vértice de algum objeto se encontra em determinado instante. Podemos enumerar esses espaços em 6, que são listados abaixo.
+
+* Model Space ou Object Space
+* World Space ou Universe Space
+* Camera Space
+* Clipping Space
+* Canonical Space
+* Screen Space
 
 Um [pipeline gráfico](https://en.wikipedia.org/wiki/Graphics_pipeline) pode ser definido como um conjunto de etapas e/ou transformações usado para a criação de uma cena rasterizada, ou seja, conduzir os pontos do espaço do objeto até o espaço da tela. Para a existência do fluxo em um pipeline gráfico, os pontos da cena precisam ser aplicados a transformações e matrizes, que transformam e levam os pontos para etapas seguintes. A **Figura 1** ilustra como está divido o pipeline gráfico.
- 
-<div style="margin: 40px;">
-    [<p align="center">
-        <img src ="./images/full_pipeline.png" style="width: 90%;"/>
-        <h5 align="center">Figura 1</h5>
-    </p>](https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html)
-</div>
 
-Agora que já sabemos como é divido um pipeline gráfico, o passo seguinte e saber como funciona e qual a função de cada etapa.
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/full_pipeline.png" style="width: 90%;"/>
+            <h5 align="center">Figura 1</h5>
+        </p>
+    </div>
+</a>
+
+Agora que já sabemos como é divido um pipeline gráfico, o passo seguinte é saber como funciona e qual a função de cada etapa.
 
 ---
 
