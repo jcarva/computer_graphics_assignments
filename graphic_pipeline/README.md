@@ -170,6 +170,39 @@ O passo restante é encontrar o vetor que representará o eixo Y, para isso apli
 
 #### Construção da matriz View
 
+Com a base ortonormal da câmera definida(Xc, Yc e Zc) no passo anterior, temos as ferramentas necessaria para construir a matriz transposta para rotação de base. A **Figura 10** mostra tal contrução da matriz.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/view_matrix_rotation.png" style="width: 90%;"/>
+            <h5 align="center">Figura 10 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+A operação restante concluir a transformação View é a translação, movendo EYE para a origem. Esta operação é representada por uma matriz e pode ser visualizada na **Figura 11**.
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/view_matrix_translation.png" style="width: 55%;"/>
+            <h5 align="center">Figura 11 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
+Podemos ainda combinar a matriz de rotação transposta com a matriz de translação, definidas nos passos anteriores, assim contruindo uma única matriz View que pode ser visualizada na **Figura 12**
+
+<a href="https://www.ntu.edu.sg/home/ehchua/programming/opengl/CG_BasicsTheory.html">
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src ="./images/build_view_matrix.png" style="width: 100%;"/>
+            <h5 align="center">Figura 12 - (3D Graphics with OpenGL - Basic Theory)</h5>
+        </p>
+    </div>
+</a>
+
 ---
 
 ## Projection
