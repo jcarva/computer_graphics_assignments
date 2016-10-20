@@ -223,7 +223,7 @@ Ainda há uma importante operação adicional que é aplicada, a distorção per
     <div style="margin: 40px;">
         <p align="center">
             <img src="./images/perspective_projection.png" style="width: 50%;"/>
-            <h5 align="center">Figura 14</h5>
+            <h5 align="center">Figura 14 - (Notas de Aula do Prof. Christian Pagot)</h5>
         </p>
     </div>
 </a>
@@ -243,9 +243,68 @@ A estrutura encarregada de realizar a transformação de distorção é a matriz
 
 ## Homogeneização
 
+Com o objeto a ser modelado contido no espaço de recorte, a homogeneização move todos os vertices do objeto do ***espaço de recorte*** para o ***espaço canônico***. O processo de homogeinização resume-se em dividir todos os componentes do vertice pelo valor de sua coordenada homogenea.
+
+O resultado da homogeneização é a mudança na perspectiva gerada pela transformação Projection para um espaço mais similar ao ser apresentado na tela.
+
 ---
 
 ## Viewport
+
+Após passar pelo espaço de recorte chega-se ao espaço canônico, e por meio da tranformação Viewport, o objeto é transportado do ***espaço canônico*** para o ***espaço da tela***, sendo assim a ultima tranformação que será realizada. Neste espaço é feita a configuração da exibição da cena de acordo com as dimensões da tela, assim como ilustra a **Figura 16**.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/viewport.png" style="width: 90%;"/>
+            <h5 align="center">Figura 16 - (Notas de Aula do Prof. Christian Pagot)</h5>
+        </p>
+    </div>
+</a>
+
+Para realizar tal tarefa precisamos fazer uma analise e comparar as diferenças entre as coordenadas do espaço atual e do espaço da tela. O espaço da tela possui a a coordenada ```Y``` invertida em relação ao espaço canônico, logo torna-se necessaria a aplicação de uma matriz de espelhamento(escala) no eixo ```Y```, que é representada pela **Figura 17**.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/viewport_scale1.png" style="width: 35%;"/>
+            <h5 align="center">Figura 17</h5>
+        </p>
+    </div>
+</a>
+
+Uma outra tranformação geometrica necessaria é uma translação, pois o espaço da tela possui apenas valores positivos de ```x``` e ```y```, porém o espaço canônico possui valores positivos e negativos para ```x``` e ```y``` que variam entre -1 à 1. A matriz de translação está representada pela **Figura 18**.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/viewport_translation.png" style="width: 35%;"/>
+            <h5 align="center">Figura 18</h5>
+        </p>
+    </div>
+</a>
+
+A ultima operação necessaria é realizar um mais escalonameto para mapear toda a dimensão do espaço canônico para o tamanho da tela. A figura **Figura 19** ilustra a segunda matriz de escalonamento.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/viewport_scale2.png" style="width: 45%;"/>
+            <h5 align="center">Figura 19</h5>
+        </p>
+    </div>
+</a>
+
+Assim como na transformação View, podemos agregar as matrizes representadas pela **Figura17**, **Figura18**, **Figura19** e gerar a matriz Viewport, que é representada pela **Figura 20**.
+
+<a>
+    <div style="margin: 40px;">
+        <p align="center">
+            <img src="./images/viewport_matrix.png" style="width: 90%;"/>
+            <h5 align="center">Figura 20</h5>
+        </p>
+    </div>
+</a>
 
 ---
 
@@ -651,49 +710,49 @@ for(int f = 0; f < objData->faceCount; f++)
 ```
 
 ### Resultados
-Para a analise dos resultados, foi tomada como base para comparação a imagem gerada pelo OpenGL, mais especificamente, gerada pelo carregador de objetos disponilibilizado pelo Prof. Christian Pagot. Tal imagem poder ser vizualizada na **Figura X**
+Para a analise dos resultados, foi tomada como base para comparação a imagem gerada pelo OpenGL, mais especificamente, gerada pelo carregador de objetos disponilibilizado pelo Prof. Christian Pagot. Tal imagem poder ser vizualizada na **Figura 21**
 
 <a>
     <div style="margin: 40px;">
         <p align="center">
             <img src="./images/obj_loader1.png"/>
-            <h5 align="center">Figura X</h5>
+            <h5 align="center">Figura 21</h5>
         </p>
     </div>
 </a>
 
 #### Experimento 1
-O intuito do primeiro experimento foi de se aproximar ao máximo da **Figura X**, ajustando a distancia do view plane e posição da camera para obter o melhor resultado possivel, que pode visualizado na **Figura X**.
+O intuito do primeiro experimento foi de se aproximar ao máximo da **Figura 21**, ajustando a distancia do view plane e posição da camera para obter o melhor resultado possivel, que pode visualizado na **Figura 22**.
 
 <a>
     <div style="margin: 40px;">
         <p align="center">
             <img src="./images/pipeline1.png"/>
-            <h5 align="center">Figura X</h5>
+            <h5 align="center">Figura 22</h5>
         </p>
     </div>
 </a>
 
 #### Experimento 2
-Nesse experimento, os paramatros da função de rasterização foram alterados, assim proporcionando uma imagem com triângulos de cores interpoladas. Confira na **Figura X**
+Nesse experimento, os paramatros da função de rasterização foram alterados, assim proporcionando uma imagem com triângulos de cores interpoladas. Confira na **Figura 23**
 
 <a>
     <div style="margin: 40px;">
         <p align="center">
             <img src="./images/pipeline2.png"/>
-            <h5 align="center">Figura X</h5>
+            <h5 align="center">Figura 23</h5>
         </p>
     </div>
 </a>
 
 #### Experimento 3
-Causado por uma curiosidade fora do normal, esse experimento usa uma função de rasterização distinta das outras, o resultado é a rasterização de triangulos interpolados e preenchidos, como mostra a **Figura X**.
+Causado por uma curiosidade fora do normal, esse experimento usa uma função de rasterização distinta das outras, o resultado é a rasterização de triangulos interpolados e preenchidos, como mostra a **Figura 24**.
 
 <a>
     <div style="margin: 40px;">
         <p align="center">
             <img src="./images/pipeline3.png"/>
-            <h5 align="center">Figura X</h5>
+            <h5 align="center">Figura 24</h5>
         </p>
     </div>
 </a>
