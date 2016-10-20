@@ -22,7 +22,7 @@ Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?t
 
 O objetivo final deste trabalho é a construção de um pipeline gráfico completo, realizando a implementação e explicação de todas as transformações contidas no mesmo.
 
-Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda Pink Floyd, mais especificamente ao som de [Echos](https://www.youtube.com/watch?v=jzeNFjsrb1Q), música do album Meddle de 1971.
+Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda Pink Floyd, mais especificamente ao som de [Echoes](https://www.youtube.com/watch?v=jzeNFjsrb1Q), música do album Meddle de 1971.
 
 <a href="https://www.youtube.com/watch?v=jzeNFjsrb1Q">
     <div style="margin: 40px;">
