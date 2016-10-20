@@ -28,8 +28,8 @@ void MyGlDraw(void)
 
 	Rotation(0.0f, 1.0f, 0.0f, angle);
 
-	//angle += 0.009f;
-    angle += 0.000f;
+	angle += 0.009f;
+    //angle += 0.000f;
 
 	CleanScreen(0, 0, 0, 255);
 

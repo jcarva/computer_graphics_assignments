@@ -760,7 +760,7 @@ Causado por uma curiosidade fora do normal, esse experimento usa uma função de
 #### Experimento 4
 Esse experimento é um video comparativo entre as renderizações geradas pelo carregador de objetos(utilizando OpenGL) e o pipeline grafico desenvolvido nesta atividade prática. Foram aplicadas rotações para a validação das tranformações e uma melhor visualização para comparação. Confira o resultado no **Video 1**.
 
-<a href="https://youtu.be/ZQ-5UGr3DMk">
+<a href="https://youtu.be/QoDRVDS9VFM">
     <div style="margin: 40px;">
         <p align="center">
             <img src="./images/video.png" style="width: 85%;"/>
