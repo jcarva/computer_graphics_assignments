@@ -27,7 +27,7 @@ Para ambientar-se com o desevolvimento desta atividade a trilha sonora fica por 
     <div style="margin: 40px;">
         <p align="center">Rick and Morty - Moonmen</p>
         <p align="center">
-          <img src="./post_images/moonmen.jpg"/>
+          <img src="./post_images/moonmen.png"/>
         </p>
     </div>
 </a>
