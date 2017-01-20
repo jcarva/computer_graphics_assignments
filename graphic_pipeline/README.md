@@ -1,3 +1,6 @@
+**Tem alguma questão ou sugestão?**																												
+Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
+
 # Pipeline Gráfico
 
 ---
@@ -12,17 +15,13 @@ Todo o código citado está disponivel neste [repositorio público](https://gith
 
 Caso o código ou a corrente postagem seja de alguma ajuda peço para que contribua com seu [Star](https://github.com/jcarva/computer_graphics_assignments) no repositorio do projeto.
 
-
-**Tem alguma questão ou sugestão?**																												
-Contate-me no [Linkedin](https://www.linkedin.com/in/jaelson-carvalho-4b84a3a2?trk=nav_responsive_tab_profile_pic), envie um email para jaelsoncarvalhojr@gmail.com, ou crie um pull request neste projeto. Toda ajuda e qualquer é bem vinda.
-
 ---
 
 ## Introdução
 
 O objetivo final deste trabalho é a construção de um pipeline gráfico completo, realizando a implementação e explicação de todas as transformações contidas no mesmo.
 
-Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda Pink Floyd, mais especificamente ao som de [Echoes](https://www.youtube.com/watch?v=jzeNFjsrb1Q), música do album Meddle de 1971.
+Para uma leitura e viagem completa através do desevolvimento do pipeline gráfico a trilha sonora fica por conta da banda Pink Floyd, mais especificamente ao som de [Echoes](https://www.youtube.com/watch?v=HuBqE9xGtiQ), música do album Meddle de 1971.
 
 <a href="https://www.youtube.com/watch?v=jzeNFjsrb1Q">
     <div style="margin: 40px;">
